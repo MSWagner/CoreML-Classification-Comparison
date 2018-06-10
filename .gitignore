@@ -69,5 +69,5 @@ fastlane/test_output
 .DS_Store
 
 #Firebase Credentials
-*/GoogleService-Info.plist
+*GoogleService-Info.plist
 
