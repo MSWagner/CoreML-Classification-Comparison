@@ -8,7 +8,9 @@ target 'MLKit-Vision-Demo' do
   inhibit_all_warnings!
   # Pods for MLKit-Vision-Demo
 
-    pod 'ReactiveCocoa', '~> 7.0'
+    pod 'ReactiveCocoa', '~> 7.1'
+    pod 'AlamofireImage', '~> 3.3'
+    pod 'Moya/ReactiveSwift', '~> 11.0'
     pod 'MBDataSource'
     pod 'Firebase/Core'
     pod 'Firebase/Database'
