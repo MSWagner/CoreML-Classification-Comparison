@@ -4,7 +4,7 @@ import Moya
 enum API {
 
     //Flickr
-    case photosSearch(lat: Double, lng: Double, page: Int)
+    case photosSearch(text: String, page: Int)
 }
 
 extension API: TargetType {
@@ -31,13 +31,11 @@ extension API: TargetType {
 
     var task: Moya.Task {
         switch self {
-        case let .photosSearch(lat, lng, page):
+        case let .photosSearch(text, page):
             let parameters = [
                 "method": "flickr.photos.search",
                 "api_key": Config.Flickr.APIKey,
-                "lat": String(lat),
-                "lon": String(lng),
-                "radius": "10", //km
+                "tags": text,
                 "per_page": "30",
                 "format": "json",
                 "nojsoncallback": String("1"),

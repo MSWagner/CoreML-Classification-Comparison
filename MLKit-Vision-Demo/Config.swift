@@ -17,7 +17,7 @@ struct Config {
         }
 
         static let RandomStubRequests = false
-        static let StubRequests = true
+        static let StubRequests = false
         static var TimeoutInterval: TimeInterval = 120.0
 
         static var NetworkLoggingEnabled: Bool {
