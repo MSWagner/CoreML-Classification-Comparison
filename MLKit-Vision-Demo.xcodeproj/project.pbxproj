@@ -11,7 +11,6 @@
 		D36F069C20CD816A00F192D9 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D36F069B20CD816A00F192D9 /* ViewController.swift */; };
 		D36F06A120CD816B00F192D9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D36F06A020CD816B00F192D9 /* Assets.xcassets */; };
 		D36F06AC20CD81E900F192D9 /* Podfile in Resources */ = {isa = PBXBuildFile; fileRef = D36F06AB20CD81E800F192D9 /* Podfile */; };
-		D36F06AF20CD822200F192D9 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = D36F06AE20CD822200F192D9 /* Info.plist */; };
 		D36F06D120CD823200F192D9 /* Strings.swift in Sources */ = {isa = PBXBuildFile; fileRef = D36F06B020CD823000F192D9 /* Strings.swift */; };
 		D36F06D320CD823200F192D9 /* .gitkeep in Resources */ = {isa = PBXBuildFile; fileRef = D36F06B320CD823000F192D9 /* .gitkeep */; };
 		D36F06D420CD823200F192D9 /* Environment.swift in Sources */ = {isa = PBXBuildFile; fileRef = D36F06B420CD823000F192D9 /* Environment.swift */; };
@@ -41,7 +40,7 @@
 		D36F069920CD816A00F192D9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D36F069B20CD816A00F192D9 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ViewController.swift; path = ../ViewController.swift; sourceTree = "<group>"; };
 		D36F06A020CD816B00F192D9 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		D36F06AB20CD81E800F192D9 /* Podfile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Podfile; sourceTree = "<group>"; };
+		D36F06AB20CD81E800F192D9 /* Podfile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Podfile; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		D36F06AE20CD822200F192D9 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D36F06B020CD823000F192D9 /* Strings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Strings.swift; sourceTree = "<group>"; };
 		D36F06B320CD823000F192D9 /* .gitkeep */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .gitkeep; sourceTree = "<group>"; };
@@ -156,11 +155,11 @@
 		D36F06B520CD823000F192D9 /* Networking */ = {
 			isa = PBXGroup;
 			children = (
-				D36F06B620CD823000F192D9 /* APIError.swift */,
-				D36F06B720CD823000F192D9 /* StubData */,
-				D36F06B920CD823000F192D9 /* APIClient.swift */,
 				D36F06BA20CD823000F192D9 /* API.swift */,
+				D36F06B920CD823000F192D9 /* APIClient.swift */,
+				D36F06B620CD823000F192D9 /* APIError.swift */,
 				D36F06BB20CD823000F192D9 /* MoyaLogger.swift */,
+				D36F06B720CD823000F192D9 /* StubData */,
 			);
 			path = Networking;
 			sourceTree = "<group>";
@@ -306,7 +305,6 @@
 				D36F06F020CD836700F192D9 /* LaunchScreen.storyboard in Resources */,
 				D36F06AC20CD81E900F192D9 /* Podfile in Resources */,
 				D36F06D320CD823200F192D9 /* .gitkeep in Resources */,
-				D36F06AF20CD822200F192D9 /* Info.plist in Resources */,
 				D36F06F320CD862E00F192D9 /* GoogleService-Info.plist in Resources */,
 				D36F06EF20CD836700F192D9 /* Main.storyboard in Resources */,
 				D36F06D620CD823200F192D9 /* test.json in Resources */,
@@ -342,12 +340,15 @@
 			);
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-MLKit-Vision-Demo/Pods-MLKit-Vision-Demo-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
+				"${BUILT_PRODUCTS_DIR}/AlamofireImage/AlamofireImage.framework",
 				"${BUILT_PRODUCTS_DIR}/Diff/Diff.framework",
 				"${BUILT_PRODUCTS_DIR}/GDPerformanceView-Swift/GDPerformanceView_Swift.framework",
 				"${BUILT_PRODUCTS_DIR}/GTMSessionFetcher/GTMSessionFetcher.framework",
 				"${BUILT_PRODUCTS_DIR}/GoogleAPIClientForREST/GoogleAPIClientForREST.framework",
 				"${BUILT_PRODUCTS_DIR}/GoogleToolboxForMac/GoogleToolboxForMac.framework",
 				"${BUILT_PRODUCTS_DIR}/MBDataSource/MBDataSource.framework",
+				"${BUILT_PRODUCTS_DIR}/Moya/Moya.framework",
 				"${BUILT_PRODUCTS_DIR}/PKHUD/PKHUD.framework",
 				"${BUILT_PRODUCTS_DIR}/Protobuf/Protobuf.framework",
 				"${BUILT_PRODUCTS_DIR}/ReactiveCocoa/ReactiveCocoa.framework",
@@ -358,12 +359,15 @@
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AlamofireImage.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Diff.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GDPerformanceView_Swift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMSessionFetcher.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleAPIClientForREST.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleToolboxForMac.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MBDataSource.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Moya.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PKHUD.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Protobuf.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ReactiveCocoa.framework",
@@ -544,7 +548,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = T3TBY9W4TM;
-				INFOPLIST_FILE = "MLKit-Vision-Demo/Info.plist";
+				INFOPLIST_FILE = "$(SRCROOT)/MLKit-Vision-Demo/SupportingFiles/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -563,7 +567,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = T3TBY9W4TM;
-				INFOPLIST_FILE = "MLKit-Vision-Demo/Info.plist";
+				INFOPLIST_FILE = "$(SRCROOT)/MLKit-Vision-Demo/SupportingFiles/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

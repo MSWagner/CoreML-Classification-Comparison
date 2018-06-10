@@ -2,9 +2,9 @@ import Foundation
 import Moya
 
 enum API {
-    // Login
-    case postLogin(username: String, password: String)
-    case postRefreshToken(refreshToken: String)
+
+    //Flickr
+    case photosSearch(lat: Double, lng: Double, page: Int)
 }
 
 extension API: TargetType {
@@ -18,43 +18,33 @@ extension API: TargetType {
 
     var path: String {
         switch self {
-        case .postLogin: return "api/v1/auth/token"
-        case .postRefreshToken: return "api/v1/auth/token"
+        case .photosSearch: return "services/rest/"
         }
     }
 
     var method: Moya.Method {
         switch self {
-        case .postLogin,
-             .postRefreshToken:
-            return .post
-            // default:
-            //    return .get
+        case .photosSearch:
+            return .get
         }
     }
 
     var task: Moya.Task {
         switch self {
-        case let .postLogin(username, password):
+        case let .photosSearch(lat, lng, page):
             let parameters = [
-                "grantType": "password",
-                "scope": "user",
-                "username": username,
-                "password": password
+                "method": "flickr.photos.search",
+                "api_key": Config.Flickr.APIKey,
+                "lat": String(lat),
+                "lon": String(lng),
+                "radius": "10", //km
+                "per_page": "30",
+                "format": "json",
+                "nojsoncallback": String("1"),
+                "page": String(page)
             ]
 
-            return .requestParameters(parameters: parameters, encoding: JSONEncoding.default)
-
-        case let .postRefreshToken(refreshToken):
-            let parameters = [
-                "grantType": "refreshToken",
-                "scope": "user",
-                "refreshToken": refreshToken
-            ]
-            return .requestParameters(parameters: parameters, encoding: JSONEncoding.default)
-
-            // default:
-            //    return .requestPlain
+            return .requestParameters(parameters: parameters, encoding: URLEncoding.default)
         }
     }
 
@@ -67,8 +57,6 @@ extension API: TargetType {
 
     var sampleData: Data {
         switch self {
-        case .postLogin:
-            return stub("test")
         default:
             return Data()
         }
