@@ -11,7 +11,7 @@ import UIKit
 
 struct Photo {
     let url: URL
-    let image: Data?
+    var image: Data?
 
     init?(urlString: String) {
         if let url = URL(string: urlString) {

@@ -13,7 +13,10 @@ class ImageCollectionCell: UICollectionViewCell {
 
     @IBOutlet weak var imageView: UIImageView!
 
+    var photo: Photo!
+
     func configure(photo: Photo) {
+        self.photo = photo
 
         imageView.af_cancelImageRequest()
         imageView.image = nil
@@ -23,6 +26,7 @@ class ImageCollectionCell: UICollectionViewCell {
         } else {
             let url = photo.url
             imageView.af_setImage(withURL: url) { response in
+                self.photo.image = response.data
             }
         }
     }

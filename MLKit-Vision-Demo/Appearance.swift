@@ -10,6 +10,7 @@ struct Appearance {
         UINavigationBar.appearance().backgroundColor = Colors.Main.red
         UINavigationBar.appearance().barTintColor = Colors.Main.red
         UINavigationBar.appearance().isTranslucent = false
+
         UIApplication.shared.statusBarStyle = .lightContent
 
         UITabBar.appearance().tintColor = Colors.Main.red

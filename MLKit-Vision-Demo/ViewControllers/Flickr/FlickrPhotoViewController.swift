@@ -114,8 +114,8 @@ class FlickrPhotoViewController: UIViewController {
                 self.nextPageButtonBelow.isHidden = hasNextPage ? false : true
                 self.lastPageButtonBelow.isHidden = hasLastPage ? false : true
 
-                self.navigationItem.title = lastFlickrPhotos?.page != nil ? "Page: \(lastFlickrPhotos!.page)" : "Flickr Image Search"
-                self.pageCountLabel.text = lastFlickrPhotos?.page != nil ? "Page: \(lastFlickrPhotos!.page)" : "Enter a search tag"
+                self.navigationItem.title = lastFlickrPhotos?.page != nil ? "Page: \(lastFlickrPhotos!.page)/\(lastFlickrPhotos!.pages)" : "Flickr Image Search"
+                self.pageCountLabel.text = lastFlickrPhotos?.page != nil ? "Page: \(lastFlickrPhotos!.page)/\(lastFlickrPhotos!.pages)" : "Enter a search tag"
             }
 
     }
@@ -168,7 +168,16 @@ extension FlickrPhotoViewController: UICollectionViewDataSource {
 extension FlickrPhotoViewController: UICollectionViewDelegate {
 
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let cell = collectionView.cellForItem(at: indexPath) as! ImageCollectionCell
 
+        let photo = cell.photo
+        let imageProcessingViewModel = ImageProcessingViewModel(photo: photo!)
+        let imageProcessingViewController: ImageProcessingViewController = UIStoryboard(.processing).instantiateViewController()
+
+        imageProcessingViewController.viewModel = imageProcessingViewModel
+
+        navigationItem.searchController?.searchBar.resignFirstResponder()
+        navigationController?.pushViewController(imageProcessingViewController, animated: true)
     }
 }
 

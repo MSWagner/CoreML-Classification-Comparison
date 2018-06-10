@@ -6,6 +6,7 @@ enum Storyboard: String {
     case launchScreen = "LaunchScreen"
     case main = "Main"
     case flickr = "Flickr"
+    case processing = "Processing"
 }
 
 // MARK: StoryboardIdentifiable
