@@ -8,23 +8,35 @@
 
 import Foundation
 import ReactiveSwift
+import Vision
+import CoreML
 
 class ImageProcessingViewModel {
+
+    private var _coreMLViewModels = MutableProperty<[CoreMLViewModel]>([])
+    lazy var coreMLViewModels: Property<[CoreMLViewModel]> = {
+        return Property(self._coreMLViewModels)
+    }()
 
     private var _photo: MutableProperty<Photo>
     lazy var photo: Property<Photo> = {
         return Property(self._photo)
     }()
 
-    private var _settings: MutableProperty<ProcessingSettings>
-    lazy var settings: Property<ProcessingSettings> = {
-        return Property(self._settings)
-    }()
-
     init(photo: Photo) {
         self._photo = MutableProperty<Photo>(photo)
 
-        let defaultSettings = ProcessingSettings(isVisionTextEnabled: true)
-        self._settings = MutableProperty<ProcessingSettings>(defaultSettings)
+        let coreMLViewModels = [
+            CoreMLViewModel(imageProcessingViewModel: self, type: .mobileNet),
+            CoreMLViewModel(imageProcessingViewModel: self, type: .vgg16),
+            CoreMLViewModel(imageProcessingViewModel: self, type: .resnet50),
+            CoreMLViewModel(imageProcessingViewModel: self, type: .inceptionv3),
+            CoreMLViewModel(imageProcessingViewModel: self, type: .squeezeNet),
+            CoreMLViewModel(imageProcessingViewModel: self, type: .googleLeNetPlaces)
+        ]
+
+        _coreMLViewModels.value = coreMLViewModels
     }
+
+
 }

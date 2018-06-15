@@ -41,6 +41,19 @@
 		D36F070C20CDE3B000F192D9 /* ImageProcessingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D36F070B20CDE3B000F192D9 /* ImageProcessingViewModel.swift */; };
 		D36F070E20CDE48C00F192D9 /* ImageProcessingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D36F070D20CDE48C00F192D9 /* ImageProcessingViewController.swift */; };
 		D36F071020CDE68400F192D9 /* ProcessingSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = D36F070F20CDE68400F192D9 /* ProcessingSettings.swift */; };
+		D3ECAFBD20D2E0E500B43FED /* KeyboardObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3ECAFBC20D2E0E500B43FED /* KeyboardObserver.swift */; };
+		D3ECAFCB20D2FEB200B43FED /* ImageProcessingSectionView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D3ECAFCA20D2FEB200B43FED /* ImageProcessingSectionView.xib */; };
+		D3ECAFCD20D2FF4F00B43FED /* ImageProcessingSectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3ECAFCC20D2FF4F00B43FED /* ImageProcessingSectionView.swift */; };
+		D3ECAFCF20D309E600B43FED /* CoreMLSectionHeaderCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D3ECAFCE20D309E600B43FED /* CoreMLSectionHeaderCell.xib */; };
+		D3ECAFD120D30AD100B43FED /* CoreMLSectionHeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3ECAFD020D30AD100B43FED /* CoreMLSectionHeaderCell.swift */; };
+		D3ECAFD320D3114E00B43FED /* CoreMLViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3ECAFD220D3114E00B43FED /* CoreMLViewModel.swift */; };
+		D3ECAFD520D3122800B43FED /* MLModelType.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3ECAFD420D3122800B43FED /* MLModelType.swift */; };
+		D3ECAFDC20D3A21700B43FED /* SqueezeNet.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = D3ECAFD620D3A1F700B43FED /* SqueezeNet.mlmodel */; };
+		D3ECAFDD20D3A21700B43FED /* Resnet50.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = D3ECAFD720D3A1FB00B43FED /* Resnet50.mlmodel */; };
+		D3ECAFDE20D3A21700B43FED /* VGG16.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = D3ECAFD820D3A21100B43FED /* VGG16.mlmodel */; };
+		D3ECAFDF20D3A21700B43FED /* GoogLeNetPlaces.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = D3ECAFD920D3A21200B43FED /* GoogLeNetPlaces.mlmodel */; };
+		D3ECAFE020D3A21700B43FED /* Inceptionv3.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = D3ECAFDA20D3A21600B43FED /* Inceptionv3.mlmodel */; };
+		D3ECAFE120D3A21700B43FED /* MobileNet.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = D3ECAFDB20D3A21700B43FED /* MobileNet.mlmodel */; };
 		FD2A5D0ADE1D48B8BD5755AC /* Pods_MLKit_Vision_Demo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 01A79028B97D9B84DCF1FCD3 /* Pods_MLKit_Vision_Demo.framework */; };
 /* End PBXBuildFile section */
 
@@ -83,6 +96,19 @@
 		D36F070B20CDE3B000F192D9 /* ImageProcessingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageProcessingViewModel.swift; sourceTree = "<group>"; };
 		D36F070D20CDE48C00F192D9 /* ImageProcessingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageProcessingViewController.swift; sourceTree = "<group>"; };
 		D36F070F20CDE68400F192D9 /* ProcessingSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProcessingSettings.swift; sourceTree = "<group>"; };
+		D3ECAFBC20D2E0E500B43FED /* KeyboardObserver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardObserver.swift; sourceTree = "<group>"; };
+		D3ECAFCA20D2FEB200B43FED /* ImageProcessingSectionView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ImageProcessingSectionView.xib; sourceTree = "<group>"; };
+		D3ECAFCC20D2FF4F00B43FED /* ImageProcessingSectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageProcessingSectionView.swift; sourceTree = "<group>"; };
+		D3ECAFCE20D309E600B43FED /* CoreMLSectionHeaderCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CoreMLSectionHeaderCell.xib; sourceTree = "<group>"; };
+		D3ECAFD020D30AD100B43FED /* CoreMLSectionHeaderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreMLSectionHeaderCell.swift; sourceTree = "<group>"; };
+		D3ECAFD220D3114E00B43FED /* CoreMLViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreMLViewModel.swift; sourceTree = "<group>"; };
+		D3ECAFD420D3122800B43FED /* MLModelType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MLModelType.swift; sourceTree = "<group>"; };
+		D3ECAFD620D3A1F700B43FED /* SqueezeNet.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = SqueezeNet.mlmodel; sourceTree = "<group>"; };
+		D3ECAFD720D3A1FB00B43FED /* Resnet50.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = Resnet50.mlmodel; sourceTree = "<group>"; };
+		D3ECAFD820D3A21100B43FED /* VGG16.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = VGG16.mlmodel; sourceTree = "<group>"; };
+		D3ECAFD920D3A21200B43FED /* GoogLeNetPlaces.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = GoogLeNetPlaces.mlmodel; sourceTree = "<group>"; };
+		D3ECAFDA20D3A21600B43FED /* Inceptionv3.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = Inceptionv3.mlmodel; sourceTree = "<group>"; };
+		D3ECAFDB20D3A21700B43FED /* MobileNet.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = MobileNet.mlmodel; sourceTree = "<group>"; };
 		DC48606F49B003EB356EA9EE /* Pods-MLKit-Vision-Demo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MLKit-Vision-Demo.release.xcconfig"; path = "Pods/Target Support Files/Pods-MLKit-Vision-Demo/Pods-MLKit-Vision-Demo.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -220,6 +246,7 @@
 			children = (
 				D36F06FF20CD905700F192D9 /* FlickrViewModel.swift */,
 				D36F070B20CDE3B000F192D9 /* ImageProcessingViewModel.swift */,
+				D3ECAFD220D3114E00B43FED /* CoreMLViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -231,6 +258,10 @@
 				D36F06F720CD8DB500F192D9 /* ImageCollectionCell.swift */,
 				D36F070720CDE2F400F192D9 /* ImageTableViewCell.xib */,
 				D36F070920CDE33B00F192D9 /* ImageTableViewCell.swift */,
+				D3ECAFCA20D2FEB200B43FED /* ImageProcessingSectionView.xib */,
+				D3ECAFCC20D2FF4F00B43FED /* ImageProcessingSectionView.swift */,
+				D3ECAFCE20D309E600B43FED /* CoreMLSectionHeaderCell.xib */,
+				D3ECAFD020D30AD100B43FED /* CoreMLSectionHeaderCell.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -241,6 +272,7 @@
 				D36F06FA20CD8E0100F192D9 /* Photo.swift */,
 				D36F070120CDA39E00F192D9 /* FlickrPhotoSearchResult.swift */,
 				D36F070F20CDE68400F192D9 /* ProcessingSettings.swift */,
+				D3ECAFD420D3122800B43FED /* MLModelType.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -257,8 +289,15 @@
 		D36F06CE20CD823200F192D9 /* Utilities */ = {
 			isa = PBXGroup;
 			children = (
+				D3ECAFD920D3A21200B43FED /* GoogLeNetPlaces.mlmodel */,
+				D3ECAFDA20D3A21600B43FED /* Inceptionv3.mlmodel */,
+				D3ECAFDB20D3A21700B43FED /* MobileNet.mlmodel */,
+				D3ECAFD720D3A1FB00B43FED /* Resnet50.mlmodel */,
+				D3ECAFD620D3A1F700B43FED /* SqueezeNet.mlmodel */,
+				D3ECAFD820D3A21100B43FED /* VGG16.mlmodel */,
 				D36F06CF20CD823200F192D9 /* Decoders.swift */,
 				D36F06D020CD823200F192D9 /* Formatters.swift */,
+				D3ECAFBC20D2E0E500B43FED /* KeyboardObserver.swift */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -351,6 +390,8 @@
 				D36F06F320CD862E00F192D9 /* GoogleService-Info.plist in Resources */,
 				D36F06EF20CD836700F192D9 /* Main.storyboard in Resources */,
 				D36F06D620CD823200F192D9 /* test.json in Resources */,
+				D3ECAFCB20D2FEB200B43FED /* ImageProcessingSectionView.xib in Resources */,
+				D3ECAFCF20D309E600B43FED /* CoreMLSectionHeaderCell.xib in Resources */,
 				D36F06DA20CD823200F192D9 /* .gitkeep in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -451,21 +492,29 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D3ECAFDD20D3A21700B43FED /* Resnet50.mlmodel in Sources */,
 				D36F06D720CD823200F192D9 /* APIClient.swift in Sources */,
 				D36F06E520CD823200F192D9 /* Formatters.swift in Sources */,
 				D36F070E20CDE48C00F192D9 /* ImageProcessingViewController.swift in Sources */,
+				D3ECAFDC20D3A21700B43FED /* SqueezeNet.mlmodel in Sources */,
 				D36F06E420CD823200F192D9 /* Decoders.swift in Sources */,
 				D36F06E320CD823200F192D9 /* Config.swift in Sources */,
 				D36F06D120CD823200F192D9 /* Strings.swift in Sources */,
+				D3ECAFE120D3A21700B43FED /* MobileNet.mlmodel in Sources */,
 				D36F069A20CD816A00F192D9 /* AppDelegate.swift in Sources */,
+				D3ECAFCD20D2FF4F00B43FED /* ImageProcessingSectionView.swift in Sources */,
+				D3ECAFDF20D3A21700B43FED /* GoogLeNetPlaces.mlmodel in Sources */,
 				D36F06F920CD8DB500F192D9 /* ImageCollectionCell.swift in Sources */,
+				D3ECAFD120D30AD100B43FED /* CoreMLSectionHeaderCell.swift in Sources */,
 				D36F070220CDA39E00F192D9 /* FlickrPhotoSearchResult.swift in Sources */,
 				D36F06D920CD823200F192D9 /* MoyaLogger.swift in Sources */,
+				D3ECAFDE20D3A21700B43FED /* VGG16.mlmodel in Sources */,
 				D36F06FB20CD8E0100F192D9 /* Photo.swift in Sources */,
 				D36F06DD20CD823200F192D9 /* Storyboard.swift in Sources */,
 				D36F070420CDBD9200F192D9 /* Colors.swift in Sources */,
 				D36F071020CDE68400F192D9 /* ProcessingSettings.swift in Sources */,
 				D36F070020CD905700F192D9 /* FlickrViewModel.swift in Sources */,
+				D3ECAFD520D3122800B43FED /* MLModelType.swift in Sources */,
 				D36F06E020CD823200F192D9 /* Appearance.swift in Sources */,
 				D36F070C20CDE3B000F192D9 /* ImageProcessingViewModel.swift in Sources */,
 				D36F06D420CD823200F192D9 /* Environment.swift in Sources */,
@@ -473,6 +522,9 @@
 				D36F070A20CDE33B00F192D9 /* ImageTableViewCell.swift in Sources */,
 				D36F06FE20CD8F7000F192D9 /* FlickrPhotoViewController.swift in Sources */,
 				D36F06D520CD823200F192D9 /* APIError.swift in Sources */,
+				D3ECAFE020D3A21700B43FED /* Inceptionv3.mlmodel in Sources */,
+				D3ECAFD320D3114E00B43FED /* CoreMLViewModel.swift in Sources */,
+				D3ECAFBD20D2E0E500B43FED /* KeyboardObserver.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

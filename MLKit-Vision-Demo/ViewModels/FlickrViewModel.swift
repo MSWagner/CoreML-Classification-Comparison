@@ -28,10 +28,10 @@ class FlickrViewModel {
 
     init() {
         _currentFlickrPhotos.producer.startWithValues { [weak self] (flickrPhotos) in
-            guard let `self` = self, let flickrPhotos = flickrPhotos else { return }
+            guard let `self` = self, let flickrPhotos = flickrPhotos, let searchQuery = flickrPhotos.query else { return }
 
             self._photos.value = flickrPhotos.photo
-                .compactMap { Photo(urlString: "https://farm\($0.farm).staticflickr.com/\($0.server)/\($0.id)_\($0.secret)_q.jpg") }
+                .compactMap { Photo(urlString: "https://farm\($0.farm).staticflickr.com/\($0.server)/\($0.id)_\($0.secret)_q.jpg", searchQuery: searchQuery) }
         }
     }
 

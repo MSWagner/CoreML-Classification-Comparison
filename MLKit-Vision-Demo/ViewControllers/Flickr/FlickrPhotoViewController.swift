@@ -29,6 +29,8 @@ class FlickrPhotoViewController: UIViewController {
 
     // MARK: - Properties
 
+    private var disposableBag = CompositeDisposable()
+
     private let searchController = UISearchController(searchResultsController: nil)
     private let isSearchBarActive = MutableProperty<Bool>(false)
 
@@ -44,25 +46,38 @@ class FlickrPhotoViewController: UIViewController {
         viewModel = FlickrViewModel()
 
         setupSearch()
+        setupCollectionView()
+        bindViewModel()
+        setupNavigationBarButtons()
+    }
 
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        disposableBag.dispose()
+    }
+
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        bindKeyboard()
+    }
+
+    // MARK: - Search Setup
+
+    private func setupCollectionView() {
         collectionView.dataSource = self
         collectionView.delegate = self
         collectionView.register(UINib(nibName: cellIdentifier, bundle: nil), forCellWithReuseIdentifier: cellIdentifier)
 
         flowLayout.itemSize = CGSize(width: collectionView.bounds.width / 3 - 1, height: collectionView.bounds.width / 3 - 1)
         flowLayout.minimumLineSpacing = 1
-
-        bindViewModel()
-        setupNavigationBarButtons()
     }
-
-    // MARK: - Search Setup
 
     private func setupSearch() {
         searchController.searchResultsUpdater = self
         searchController.searchBar.delegate = self
         searchController.obscuresBackgroundDuringPresentation = false
         searchController.searchBar.placeholder = "Search Images"
+        searchController.searchBar.returnKeyType = .done
         navigationItem.searchController = searchController
         navigationItem.hidesSearchBarWhenScrolling = false
 
@@ -93,7 +108,8 @@ class FlickrPhotoViewController: UIViewController {
         nextPageButtonBelow.tintColor = .white
 
         SignalProducer
-            .combineLatest(viewModel.currentFlickrPhotos.producer, isSearchBarActive.producer)
+            .combineLatest(viewModel.currentFlickrPhotos.producer,
+                           isSearchBarActive.producer)
             .startWithValues { [weak self] lastFlickrPhotos, isSearchBarActive in
                 guard let `self` = self else { return }
 
@@ -108,16 +124,40 @@ class FlickrPhotoViewController: UIViewController {
                 self.navigationItem.rightBarButtonItem = hasNextPage ? self.nextPageButton : nil
                 self.navigationItem.leftBarButtonItem = hasLastPage ? self.lastPageButton : nil
 
-                self.pageControlView.isHidden = isSearchBarActive ? false : true
-                self.pageControlHeightConstraint.constant = isSearchBarActive ? 45 : 0
+                if isSearchBarActive {
+                    self.pageControlView.isHidden = false
+                    self.pageControlHeightConstraint.constant = 45
+                }
 
                 self.nextPageButtonBelow.isHidden = hasNextPage ? false : true
                 self.lastPageButtonBelow.isHidden = hasLastPage ? false : true
 
-                self.navigationItem.title = lastFlickrPhotos?.page != nil ? "Page: \(lastFlickrPhotos!.page)/\(lastFlickrPhotos!.pages)" : "Flickr Image Search"
-                self.pageCountLabel.text = lastFlickrPhotos?.page != nil ? "Page: \(lastFlickrPhotos!.page)/\(lastFlickrPhotos!.pages)" : "Enter a search tag"
+                self.navigationItem.title = lastFlickrPhotos?.page != nil
+                    ? "Page: \(lastFlickrPhotos!.page)/\(lastFlickrPhotos!.pages)"
+                    : "Flickr Image Search"
+
+                self.pageCountLabel.text = lastFlickrPhotos?.page != nil
+                    ? "Page: \(lastFlickrPhotos!.page)/\(lastFlickrPhotos!.pages)"
+                    : "Enter a search tag"
             }
 
+    }
+
+    // MARK: - Keyboard
+
+    private func bindKeyboard() {
+        disposableBag = CompositeDisposable()
+        disposableBag += KeyboardObserver.shared.keyboardWillShowSignal.producer
+            .skipNil()
+            .startWithValues { keyboardNotification in
+                self.collectionView.contentInset.bottom = keyboardNotification.keyboardEndFrame.height
+            }
+
+        disposableBag += KeyboardObserver.shared.keyboardWillHideSignal.producer
+            .skipNil()
+            .startWithValues { [weak self] keyboardNotification in
+                self?.collectionView.contentInset.bottom = 0
+        }
     }
 
     // MARK: - Datasource
@@ -208,5 +248,10 @@ extension FlickrPhotoViewController: UISearchBarDelegate {
 
     func searchBarTextDidEndEditing(_ searchBar: UISearchBar) {
         searchController.searchBar.text = viewModel.currentFlickrPhotos.value?.query
+    }
+
+    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+        pageControlView.isHidden = true
+        pageControlHeightConstraint.constant = 0
     }
 }

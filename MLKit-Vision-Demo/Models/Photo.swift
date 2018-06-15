@@ -11,15 +11,17 @@ import UIKit
 
 struct Photo {
     let url: URL
+    let searchQuery: String
     var image: Data?
 
-    init?(urlString: String) {
+    init?(urlString: String, searchQuery: String) {
         if let url = URL(string: urlString) {
             self.url = url
         } else {
             return nil
         }
 
+        self.searchQuery = searchQuery
         image = nil
     }
 }

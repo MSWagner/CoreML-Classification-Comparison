@@ -9,6 +9,8 @@
 import UIKit
 import MBDataSource
 import ReactiveSwift
+import Vision
+import CoreML
 
 class ImageProcessingViewController: UIViewController {
 
@@ -30,12 +32,24 @@ class ImageProcessingViewController: UIViewController {
                         cell.configure(viewModel: viewModel)
                     }
                     .height { self.imageCellHeight },
+                CoreMLSectionHeaderCell.descriptor
+                    .configure { [weak self] (viewModel, cell, _) in
+                        cell.configure(viewModel: viewModel)
+                    }
+                    .height { 50 }
             ],
             sectionDescriptors: [
+                SectionDescriptor<Void>("ImageCellFooter")
+                    .footer {
+                        .view(self.createFooterForImageCell())
+                    }
+                    .footerHeight {
+                        .value(30)
+                    },
                 SectionDescriptor<Void>("Footer")
                     .footerHeight {
                         .value(1)
-                }
+                    }
             ]
         )
     }()
@@ -49,19 +63,34 @@ class ImageProcessingViewController: UIViewController {
             imageCellHeight = image.size.height < 1000 ? image.size.height : 1000
         }
 
+        navigationItem.title = viewModel.photo.value.searchQuery
         bindDataSource()
     }
 
     // MARK: - Setup
 
     private func bindDataSource() {
-        viewModel.photo.producer.startWithValues { [weak self] photo in
-            guard let `self` = self else { return }
+        SignalProducer.combineLatest(viewModel.photo.producer,
+                                     viewModel.coreMLViewModels.producer)
+            .startWithValues { [weak self] (photo, coreMlViewModels) in
+                guard let `self` = self else { return }
 
-            let imageSection = Section(rows: [Row(self.viewModel, identifier: "ImageCell")]).with(identifier: "Footer")
+                let imageSection = Section(rows: [Row(self.viewModel, identifier: "ImageCell")]).with(identifier: "ImageCellFooter")
 
-            self.dataSource.sections = [imageSection]
-            self.dataSource.reloadData(self.tableView, animated: true)
+                let coreMLSections = Section(rows: coreMlViewModels.map { Row($0, identifier: "MLSectionCell") }).with(identifier: "Footer")
+
+                self.dataSource.sections = [imageSection, coreMLSections]
+                self.dataSource.reloadData(self.tableView, animated: true)
         }
+    }
+
+    func createFooterForImageCell() -> UIView {
+        let label = UILabel()
+        label.backgroundColor = Colors.Main.red
+        label.textAlignment = .center
+        label.text = "Press Start to classify the image"
+        label.textColor = .white
+        label.font = UIFont.boldSystemFont(ofSize: 12.0)
+        return label
     }
 }
