@@ -1,1 +1,1 @@
-# MLKit-Vision-Demo
+# CoreML-Classification-Comparison
