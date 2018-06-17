@@ -93,7 +93,7 @@ extension FlickrViewModel: ImageCollectionViewModel {
     func searchFor(_ query: String, page: Int? = nil) {
         currentNetworkRequest?.dispose()
 
-        if reachability?.connection != .wifi || reachability?.connection != .cellular {
+        if reachability?.connection != .wifi && reachability?.connection != .cellular {
             HUD.flash(.label(Strings.Network.errorNoConnection), delay: 1)
             return
         }
