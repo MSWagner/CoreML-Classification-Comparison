@@ -37,7 +37,11 @@ class CoreMLSectionHeaderCell: UITableViewCell {
         disposableBag += viewModel.isProcessing.producer
             .startWithValues { [weak self] isProcessing in
                 self?.startProcessingButton.isLoading = isProcessing
+            }
 
+        disposableBag += viewModel.isSaving.producer
+            .startWithValues { isSaving in
+                self.saveButton.isLoading = isSaving
             }
 
         disposableBag += viewModel.areFilteredResults.producer
@@ -53,6 +57,7 @@ class CoreMLSectionHeaderCell: UITableViewCell {
     }
 
     @IBAction func onSaveButton(_ sender: Any) {
+        viewModel.saveResults()
     }
 }
 

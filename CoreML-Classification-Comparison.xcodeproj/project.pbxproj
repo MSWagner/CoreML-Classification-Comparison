@@ -8,6 +8,10 @@
 
 /* Begin PBXBuildFile section */
 		03433EAD64DB86CD41826495 /* Pods_CoreML_Classification_Comparison.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B1796008218C697522279C3 /* Pods_CoreML_Classification_Comparison.framework */; };
+		D315145A20D6E1E0000C1206 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = D315145920D6E1DF000C1206 /* GoogleService-Info.plist */; };
+		D315145C20D6E5ED000C1206 /* FirestoreController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D315145B20D6E5ED000C1206 /* FirestoreController.swift */; };
+		D315145E20D6F353000C1206 /* ImageClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = D315145D20D6F353000C1206 /* ImageClass.swift */; };
+		D315146420D6FC41000C1206 /* FirestoreResultObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = D315146320D6FC41000C1206 /* FirestoreResultObject.swift */; };
 		D36F069A20CD816A00F192D9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D36F069920CD816A00F192D9 /* AppDelegate.swift */; };
 		D36F06A120CD816B00F192D9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D36F06A020CD816B00F192D9 /* Assets.xcassets */; };
 		D36F06AC20CD81E900F192D9 /* Podfile in Resources */ = {isa = PBXBuildFile; fileRef = D36F06AB20CD81E800F192D9 /* Podfile */; };
@@ -46,9 +50,8 @@
 		D379CBD020D44B08009B8EA4 /* ClassifiProcessResultCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D379CBCF20D44B08009B8EA4 /* ClassifiProcessResultCell.swift */; };
 		D379CBD220D46484009B8EA4 /* MainTabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D379CBD120D46484009B8EA4 /* MainTabBarViewController.swift */; };
 		D379CBD420D470C6009B8EA4 /* QueryStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = D379CBD320D470C6009B8EA4 /* QueryStatus.swift */; };
-		D379CBD720D47530009B8EA4 /* RealmViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D379CBD620D47530009B8EA4 /* RealmViewModel.swift */; };
+		D379CBD720D47530009B8EA4 /* FirestoreImagesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D379CBD620D47530009B8EA4 /* FirestoreImagesViewModel.swift */; };
 		D379CBD920D47622009B8EA4 /* Strings.swift in Sources */ = {isa = PBXBuildFile; fileRef = D379CBD820D47621009B8EA4 /* Strings.swift */; };
-		D379CBDB20D47958009B8EA4 /* RealmController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D379CBDA20D47958009B8EA4 /* RealmController.swift */; };
 		D3ECAFBD20D2E0E500B43FED /* KeyboardObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3ECAFBC20D2E0E500B43FED /* KeyboardObserver.swift */; };
 		D3ECAFCB20D2FEB200B43FED /* ImageProcessingSectionView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D3ECAFCA20D2FEB200B43FED /* ImageProcessingSectionView.xib */; };
 		D3ECAFCD20D2FF4F00B43FED /* ImageProcessingSectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3ECAFCC20D2FF4F00B43FED /* ImageProcessingSectionView.swift */; };
@@ -76,6 +79,10 @@
 		3B1796008218C697522279C3 /* Pods_CoreML_Classification_Comparison.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CoreML_Classification_Comparison.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4DC415B69FEBA9ADD46D7911 /* Pods-MLKit-Vision-Demo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MLKit-Vision-Demo.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MLKit-Vision-Demo/Pods-MLKit-Vision-Demo.debug.xcconfig"; sourceTree = "<group>"; };
 		B449FB33F6952512BA5DFE11 /* Pods-CoreML-Classification-Comparison.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CoreML-Classification-Comparison.release.xcconfig"; path = "Pods/Target Support Files/Pods-CoreML-Classification-Comparison/Pods-CoreML-Classification-Comparison.release.xcconfig"; sourceTree = "<group>"; };
+		D315145920D6E1DF000C1206 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		D315145B20D6E5ED000C1206 /* FirestoreController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirestoreController.swift; sourceTree = "<group>"; };
+		D315145D20D6F353000C1206 /* ImageClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageClass.swift; sourceTree = "<group>"; };
+		D315146320D6FC41000C1206 /* FirestoreResultObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirestoreResultObject.swift; sourceTree = "<group>"; };
 		D36F069620CD816A00F192D9 /* CoreML-Classification-Comparison.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "CoreML-Classification-Comparison.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D36F069920CD816A00F192D9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D36F06A020CD816B00F192D9 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -116,9 +123,8 @@
 		D379CBCF20D44B08009B8EA4 /* ClassifiProcessResultCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClassifiProcessResultCell.swift; sourceTree = "<group>"; };
 		D379CBD120D46484009B8EA4 /* MainTabBarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarViewController.swift; sourceTree = "<group>"; };
 		D379CBD320D470C6009B8EA4 /* QueryStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QueryStatus.swift; sourceTree = "<group>"; };
-		D379CBD620D47530009B8EA4 /* RealmViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmViewModel.swift; sourceTree = "<group>"; };
+		D379CBD620D47530009B8EA4 /* FirestoreImagesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirestoreImagesViewModel.swift; sourceTree = "<group>"; };
 		D379CBD820D47621009B8EA4 /* Strings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Strings.swift; sourceTree = "<group>"; };
-		D379CBDA20D47958009B8EA4 /* RealmController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmController.swift; sourceTree = "<group>"; };
 		D3ECAFBC20D2E0E500B43FED /* KeyboardObserver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardObserver.swift; sourceTree = "<group>"; };
 		D3ECAFCA20D2FEB200B43FED /* ImageProcessingSectionView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ImageProcessingSectionView.xib; sourceTree = "<group>"; };
 		D3ECAFCC20D2FF4F00B43FED /* ImageProcessingSectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageProcessingSectionView.swift; sourceTree = "<group>"; };
@@ -175,6 +181,42 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		D315145F20D6FBD3000C1206 /* Flickr */ = {
+			isa = PBXGroup;
+			children = (
+				D36F070120CDA39E00F192D9 /* FlickrPhotoSearchResult.swift */,
+			);
+			path = Flickr;
+			sourceTree = "<group>";
+		};
+		D315146020D6FBDE000C1206 /* Images */ = {
+			isa = PBXGroup;
+			children = (
+				D379CBD320D470C6009B8EA4 /* QueryStatus.swift */,
+				D36F06FA20CD8E0100F192D9 /* Photo.swift */,
+			);
+			path = Images;
+			sourceTree = "<group>";
+		};
+		D315146120D6FBF8000C1206 /* Processing */ = {
+			isa = PBXGroup;
+			children = (
+				D36F070F20CDE68400F192D9 /* ProcessingSettings.swift */,
+				D3ECAFD420D3122800B43FED /* MLModelType.swift */,
+				D379CBCB20D44271009B8EA4 /* ClassificationResult.swift */,
+				D315145D20D6F353000C1206 /* ImageClass.swift */,
+			);
+			path = Processing;
+			sourceTree = "<group>";
+		};
+		D315146220D6FC0E000C1206 /* Firestore */ = {
+			isa = PBXGroup;
+			children = (
+				D315146320D6FC41000C1206 /* FirestoreResultObject.swift */,
+			);
+			path = Firestore;
+			sourceTree = "<group>";
+		};
 		D36F068D20CD816A00F192D9 = {
 			isa = PBXGroup;
 			children = (
@@ -221,6 +263,7 @@
 		D36F06AD20CD822200F192D9 /* SupportingFiles */ = {
 			isa = PBXGroup;
 			children = (
+				D315145920D6E1DF000C1206 /* GoogleService-Info.plist */,
 				D36F06AE20CD822200F192D9 /* Info.plist */,
 			);
 			path = SupportingFiles;
@@ -229,7 +272,7 @@
 		D36F06B220CD823000F192D9 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				D379CBDA20D47958009B8EA4 /* RealmController.swift */,
+				D315145B20D6E5ED000C1206 /* FirestoreController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -290,13 +333,11 @@
 		D36F06C920CD823100F192D9 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				D36F06FA20CD8E0100F192D9 /* Photo.swift */,
-				D36F070120CDA39E00F192D9 /* FlickrPhotoSearchResult.swift */,
-				D36F070F20CDE68400F192D9 /* ProcessingSettings.swift */,
-				D3ECAFD420D3122800B43FED /* MLModelType.swift */,
+				D315146220D6FC0E000C1206 /* Firestore */,
+				D315146120D6FBF8000C1206 /* Processing */,
+				D315146020D6FBDE000C1206 /* Images */,
+				D315145F20D6FBD3000C1206 /* Flickr */,
 				D3ECAFEA20D4333600B43FED /* FilterSettings.swift */,
-				D379CBCB20D44271009B8EA4 /* ClassificationResult.swift */,
-				D379CBD320D470C6009B8EA4 /* QueryStatus.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -354,7 +395,7 @@
 			isa = PBXGroup;
 			children = (
 				D36F06FF20CD905700F192D9 /* FlickrViewModel.swift */,
-				D379CBD620D47530009B8EA4 /* RealmViewModel.swift */,
+				D379CBD620D47530009B8EA4 /* FirestoreImagesViewModel.swift */,
 			);
 			path = Images;
 			sourceTree = "<group>";
@@ -496,6 +537,7 @@
 				D379CBCE20D447F8009B8EA4 /* ClassifiProcessResultCell.xib in Resources */,
 				D3ECAFF020D4346C00B43FED /* PrecisionCell.xib in Resources */,
 				D36F06DA20CD823200F192D9 /* .gitkeep in Resources */,
+				D315145A20D6E1E0000C1206 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -529,33 +571,51 @@
 				"${SRCROOT}/Pods/Target Support Files/Pods-CoreML-Classification-Comparison/Pods-CoreML-Classification-Comparison-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
 				"${BUILT_PRODUCTS_DIR}/AlamofireImage/AlamofireImage.framework",
+				"${BUILT_PRODUCTS_DIR}/BoringSSL/openssl.framework",
 				"${BUILT_PRODUCTS_DIR}/Diff/Diff.framework",
 				"${BUILT_PRODUCTS_DIR}/GDPerformanceView-Swift/GDPerformanceView_Swift.framework",
+				"${BUILT_PRODUCTS_DIR}/GTMSessionFetcher/GTMSessionFetcher.framework",
+				"${BUILT_PRODUCTS_DIR}/GoogleAPIClientForREST/GoogleAPIClientForREST.framework",
+				"${BUILT_PRODUCTS_DIR}/GoogleToolboxForMac/GoogleToolboxForMac.framework",
 				"${BUILT_PRODUCTS_DIR}/MBDataSource/MBDataSource.framework",
 				"${BUILT_PRODUCTS_DIR}/Moya/Moya.framework",
 				"${BUILT_PRODUCTS_DIR}/PKHUD/PKHUD.framework",
+				"${BUILT_PRODUCTS_DIR}/Protobuf/Protobuf.framework",
 				"${BUILT_PRODUCTS_DIR}/ReachabilitySwift/Reachability.framework",
 				"${BUILT_PRODUCTS_DIR}/ReactiveCocoa/ReactiveCocoa.framework",
 				"${BUILT_PRODUCTS_DIR}/ReactiveSwift/ReactiveSwift.framework",
-				"${BUILT_PRODUCTS_DIR}/Realm/Realm.framework",
-				"${BUILT_PRODUCTS_DIR}/RealmSwift/RealmSwift.framework",
 				"${BUILT_PRODUCTS_DIR}/Result/Result.framework",
+				"${BUILT_PRODUCTS_DIR}/gRPC/GRPCClient.framework",
+				"${BUILT_PRODUCTS_DIR}/gRPC-Core/grpc.framework",
+				"${BUILT_PRODUCTS_DIR}/gRPC-ProtoRPC/ProtoRPC.framework",
+				"${BUILT_PRODUCTS_DIR}/gRPC-RxLibrary/RxLibrary.framework",
+				"${BUILT_PRODUCTS_DIR}/leveldb-library/leveldb.framework",
+				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AlamofireImage.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/openssl.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Diff.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GDPerformanceView_Swift.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMSessionFetcher.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleAPIClientForREST.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleToolboxForMac.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MBDataSource.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Moya.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PKHUD.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Protobuf.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Reachability.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ReactiveCocoa.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ReactiveSwift.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Realm.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RealmSwift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Result.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GRPCClient.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/grpc.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ProtoRPC.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxLibrary.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/leveldb.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -584,10 +644,13 @@
 				D3ECAFDF20D3A21700B43FED /* GoogLeNetPlaces.mlmodel in Sources */,
 				D36F06F920CD8DB500F192D9 /* ImageCollectionCell.swift in Sources */,
 				D379CBC520D43CCC009B8EA4 /* SimpleButton.swift in Sources */,
-				D379CBD720D47530009B8EA4 /* RealmViewModel.swift in Sources */,
+				D315146420D6FC41000C1206 /* FirestoreResultObject.swift in Sources */,
+				D379CBD720D47530009B8EA4 /* FirestoreImagesViewModel.swift in Sources */,
+				D315145C20D6E5ED000C1206 /* FirestoreController.swift in Sources */,
 				D3ECAFF220D435B000B43FED /* PrecisionCell.swift in Sources */,
 				D3ECAFD120D30AD100B43FED /* CoreMLSectionHeaderCell.swift in Sources */,
 				D36F070220CDA39E00F192D9 /* FlickrPhotoSearchResult.swift in Sources */,
+				D315145E20D6F353000C1206 /* ImageClass.swift in Sources */,
 				D36F06D920CD823200F192D9 /* MoyaLogger.swift in Sources */,
 				D3ECAFDE20D3A21700B43FED /* VGG16.mlmodel in Sources */,
 				D36F06FB20CD8E0100F192D9 /* Photo.swift in Sources */,
@@ -604,7 +667,6 @@
 				D36F070C20CDE3B000F192D9 /* ImageProcessingViewModel.swift in Sources */,
 				D36F06D420CD823200F192D9 /* Environment.swift in Sources */,
 				D36F06D820CD823200F192D9 /* API.swift in Sources */,
-				D379CBDB20D47958009B8EA4 /* RealmController.swift in Sources */,
 				D36F070A20CDE33B00F192D9 /* ImageTableViewCell.swift in Sources */,
 				D36F06FE20CD8F7000F192D9 /* ImagesViewController.swift in Sources */,
 				D379CBCA20D43F10009B8EA4 /* SimpleButtonStateChangeValue.swift in Sources */,

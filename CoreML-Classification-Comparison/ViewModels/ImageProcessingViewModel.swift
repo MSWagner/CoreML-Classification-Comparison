@@ -10,6 +10,7 @@ import Foundation
 import ReactiveSwift
 import Vision
 import CoreML
+import PKHUD
 
 class ImageProcessingViewModel {
 
@@ -56,7 +57,7 @@ class ImageProcessingViewModel {
                     .map { oldResult -> ClassificationResult in
 
                         let filteredClassifications = oldResult.classifications
-                            .filter { Double($0.confidence) > precision }
+                            .filter { $0.confidence > precision }
 
                         return ClassificationResult(processingType: oldResult.processingType,
                                                     classifications: filteredClassifications)
@@ -78,5 +79,18 @@ class ImageProcessingViewModel {
         newClassifications.append(result)
 
         _classifications.value = newClassifications
+    }
+
+    func saveResultsFor(_ type: MLModelType) -> SignalProducer<[Void], APIError>? {
+        let resultForType = filteredClassifications.value
+            .first(where: { $0.processingType == type })
+
+        if let resultForType = resultForType {
+            let urlString = photo.value.url.absoluteString
+            return FirestoreController.shared.saveEntriesFor(urlString, withResult: resultForType)
+        } else {
+            HUD.flash(.label("No classification results found."))
+            return nil
+        }
     }
 }

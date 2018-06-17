@@ -8,27 +8,26 @@
 
 import UIKit
 import MBDataSource
-import Vision
 
 class ClassifiProcessResultCell: UITableViewCell {
 
     @IBOutlet weak var identifierLabel: UILabel!
     @IBOutlet weak var confidenceLabel: UILabel!
     
-    func configure(classification: VNClassificationObservation) {
-        identifierLabel.text = classification.identifier
-        confidenceLabel.text = Formatters.percentFormatter.string(from: NSNumber(value: classification.confidence))
+    func configure(imageClass: ImageClass) {
+        identifierLabel.text = imageClass.identifier
+        confidenceLabel.text = Formatters.percentFormatter.string(from: NSNumber(value: imageClass.confidence))
 
-        confidenceLabel.textColor = classification.confidence > 0.5 ? .darkGray : .red
+        confidenceLabel.textColor = imageClass.confidence > 0.5 ? .darkGray : .red
     }
 
 }
 
 extension ClassifiProcessResultCell {
-    static var descriptor: CellDescriptor<VNClassificationObservation, ClassifiProcessResultCell> {
+    static var descriptor: CellDescriptor<ImageClass, ClassifiProcessResultCell> {
         return CellDescriptor("MLClassifiResultCell")
-            .configure { (classification, cell, _) in
-                cell.configure(classification: classification)
+            .configure { (imageClass, cell, _) in
+                cell.configure(imageClass: imageClass)
         }
     }
 }

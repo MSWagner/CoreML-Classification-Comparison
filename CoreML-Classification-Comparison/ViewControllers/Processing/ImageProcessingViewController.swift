@@ -39,7 +39,7 @@ class ImageProcessingViewController: UIViewController {
                     .height { 50 },
                 ClassifiProcessResultCell.descriptor
                     .configure { [weak self] (classification, cell, _) in
-                        cell.configure(classification: classification)
+                        cell.configure(imageClass: classification)
                     }
                     .estimatedHeight { 40 }
             ],

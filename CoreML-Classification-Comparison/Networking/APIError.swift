@@ -6,6 +6,7 @@ enum APIError: Swift.Error, LocalizedError {
     case moya(MoyaError, API)
     case underlying(Swift.Error)
     case invalidCredentials
+    case setFireStoreData
     case other
 
     var errorDescription: String? {
@@ -14,6 +15,8 @@ enum APIError: Swift.Error, LocalizedError {
             return localizedMoyaError(error: error, target: target)
         case .underlying:
             return APIError.defaultLocalizedError
+        case .setFireStoreData:
+            return Strings.Network.errorFirestoreSetData
         default:
             return APIError.defaultLocalizedError
         }

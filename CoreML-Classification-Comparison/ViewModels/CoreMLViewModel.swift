@@ -10,6 +10,7 @@ import Foundation
 import CoreML
 import Vision
 import ReactiveSwift
+import PKHUD
 
 class CoreMLViewModel {
 
@@ -30,10 +31,11 @@ class CoreMLViewModel {
     // MARK: - Properties
 
     var modelName: String {
-        return modelType.name
+        return modelType.rawValue
     }
 
     var isProcessing = MutableProperty<Bool>(false)
+    var isSaving = MutableProperty<Bool>(false)
 
     lazy var areFilteredResults: Property<Bool> = {
         let initial = imageProcessingViewModel.filteredClassifications.value
@@ -46,7 +48,7 @@ class CoreMLViewModel {
         return Property(initial: !initial, then: producer)
     }()
 
-    // MARK: - Functions
+    // MARK: - Accesible Functions
 
     func startImageProcessing() {
         guard let imageData = imageProcessingViewModel.photo.value.image else { return }
@@ -67,6 +69,24 @@ class CoreMLViewModel {
             }
         }
     }
+
+    func saveResults() {
+        if let producer = imageProcessingViewModel.saveResultsFor(modelType) {
+            isSaving.value = true
+
+            producer.startWithResult { [weak self] result in
+                switch result {
+                case .success(_): break
+                case .failure(let error):
+                    HUD.flash(.label(error.errorDescription))
+                }
+
+                self?.isSaving.value = false
+            }
+        }
+    }
+
+    // MARK: - Private Functions
 
     private func createMLRequestFor(_ mlModelType: MLModelType) -> VNCoreMLRequest {
         let model = try! VNCoreMLModel(for: mlModelType.model)
@@ -93,8 +113,13 @@ class CoreMLViewModel {
             }
             self.isProcessing.value = false
 
+            let imageClasses = classifications
+                .map { ImageClass(identifier: $0.identifier,
+                                  confidence: Double($0.confidence))
+                }
+
             let classificationResult = ClassificationResult(processingType: self.modelType,
-                                                            classifications: classifications)
+                                                            classifications: imageClasses)
             self.imageProcessingViewModel.addClassificationResult(classificationResult)
         }
     }

@@ -12,6 +12,7 @@ public struct Strings {
         static let errorPostingFailed = Strings.localized("network_error_posting_failed", value: "Data could not be transferred. (Code %1$@)")
         static let errorWrongCredentials = Strings.localized("network_error_wrong_credentials", value: "You entered an incorrect username or a wrong password. Please try again.")
         static let errorActionDisabled = Strings.localized("network_error_action_disabled", value: "The Action is already running.")
+        static let errorFirestoreSetData = Strings.localized("firestore_error_setData", value: "Error during firestore saving.")
     }
 
     public struct ImagesViewController {

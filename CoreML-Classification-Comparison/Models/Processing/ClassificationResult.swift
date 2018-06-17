@@ -11,5 +11,6 @@ import Vision
 
 struct ClassificationResult {
     let processingType: MLModelType
-    let classifications: [VNClassificationObservation]
+    let classifications: [ImageClass]
+    let url: String? = nil
 }

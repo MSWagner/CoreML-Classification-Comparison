@@ -9,13 +9,13 @@
 import Foundation
 import CoreML
 
-enum MLModelType {
-    case mobileNet
-    case vgg16
-    case squeezeNet
-    case resnet50
-    case inceptionv3
-    case googleLeNetPlaces
+enum MLModelType: String {
+    case mobileNet = "MobileNet"
+    case vgg16 = "VGG16"
+    case squeezeNet = "SqueezeNet"
+    case resnet50 = "Resnet50"
+    case inceptionv3 = "Inceptionv3"
+    case googleLeNetPlaces = "GoogLeNetPlaces"
 
     var model: MLModel {
         switch self {
@@ -25,17 +25,6 @@ enum MLModelType {
         case .resnet50: return Resnet50().model
         case .inceptionv3: return Inceptionv3().model
         case .googleLeNetPlaces: return GoogLeNetPlaces().model
-        }
-    }
-
-    var name: String {
-        switch self {
-        case .mobileNet: return "MobileNet"
-        case .vgg16: return "VGG16"
-        case .squeezeNet: return "SqueezeNet"
-        case .resnet50: return "Resnet50"
-        case .inceptionv3: return "Inceptionv3"
-        case .googleLeNetPlaces: return "GoogLeNetPlaces"
         }
     }
 }

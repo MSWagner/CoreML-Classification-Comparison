@@ -30,7 +30,7 @@ class MainTabBarViewController: UITabBarController {
         realmNavigationController.tabBarItem = UITabBarItem(title: "Saves", image: #imageLiteral(resourceName: "file-folder"), selectedImage: nil)
 
         let realmImageViewController: ImagesViewController = UIStoryboard(.images).instantiateViewController()
-        realmImageViewController.viewModel = RealmViewModel()
+        realmImageViewController.viewModel = FirestoreImagesViewModel()
         realmNavigationController.viewControllers = [realmImageViewController]
 
         // Set VCs in TabBarViewController

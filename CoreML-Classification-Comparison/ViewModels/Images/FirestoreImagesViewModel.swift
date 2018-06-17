@@ -1,5 +1,5 @@
 //
-//  RealmViewModel.swift
+//  FirestoreImagesViewModel.swift
 //  MLKit-Vision-Demo
 //
 //  Created by Matthias Wagner on 16.06.18.
@@ -10,7 +10,7 @@ import Foundation
 import ReactiveSwift
 import Result
 
-class RealmViewModel {
+class FirestoreImagesViewModel {
 
     // MARK: - Properties
 
@@ -84,7 +84,7 @@ class RealmViewModel {
 
 // MARK: - ImageCollectionViewModel
 
-extension RealmViewModel: ImageCollectionViewModel {
+extension FirestoreImagesViewModel: ImageCollectionViewModel {
 
     func searchFor(_ query: String, page: Int? = nil) {
         currentNetworkRequest?.dispose()
