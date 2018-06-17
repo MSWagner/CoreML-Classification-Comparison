@@ -1,6 +1,13 @@
 import Foundation
 
 struct Formatters {
+
+    static let percentFormatter: NumberFormatter = {
+        let numberFormatter = NumberFormatter()
+        numberFormatter.numberStyle = .percent
+        return numberFormatter
+    }()
+
     static let isoDateFormatter: DateFormatter = {
         let formatter = DateFormatter()
         formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSZZZZZ"

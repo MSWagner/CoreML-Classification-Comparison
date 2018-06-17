@@ -4,12 +4,19 @@ import Foundation
 
 // swiftlint:disable line_length
 public struct Strings {
+
     public struct Network {
-        static let errorGeneric = Strings.localized("network_error_generic", value: "Ein Fehler ist aufgetreten.")
-        static let errorLoadingFailed = Strings.localized("network_error_loading_failed", value: "Daten konnten nicht geladen werden. (Code %1$@)")
-        static let errorNoConnection = Strings.localized("network_error_no_connection", value: "Keine Netzwerkverbindung. Bitte versuchen Sie es später erneut.")
-        static let errorPostingFailed = Strings.localized("network_error_posting_failed", value: "Daten konnten nicht übertragen werden. (Code %1$@)")
-        static let errorWrongCredentials = Strings.localized("network_error_wrong_credentials", value: "Sie haben einen falschen Usernamen oder ein falsches Passwort eingegeben. Bitte versuchen Sie es erneut.")
+        static let errorGeneric = Strings.localized("network_error_generic", value: "An error has occurred.")
+        static let errorLoadingFailed = Strings.localized("network_error_loading_failed", value: "Could not load data. (Code %1$@)")
+        static let errorNoConnection = Strings.localized("network_error_no_connection", value: "No network connection. Please try again later.")
+        static let errorPostingFailed = Strings.localized("network_error_posting_failed", value: "Data could not be transferred. (Code %1$@)")
+        static let errorWrongCredentials = Strings.localized("network_error_wrong_credentials", value: "You entered an incorrect username or a wrong password. Please try again.")
+        static let errorActionDisabled = Strings.localized("network_error_action_disabled", value: "The Action is already running.")
+    }
+
+    public struct ImagesViewController {
+        static let realmTitle = Strings.localized("images_realm_title", value: "Database Image Search")
+        static let flickrTitle = Strings.localized("images_flickr_title", value: "Flirckr Image Search")
     }
 
     // settings this closure allows you to use a custom localization provider, such as OneSky over-the-air

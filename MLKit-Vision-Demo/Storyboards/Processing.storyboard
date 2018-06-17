@@ -49,7 +49,13 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="4sy-I5-786"/>
                     </view>
-                    <navigationItem key="navigationItem" id="Hy7-uf-hTw"/>
+                    <navigationItem key="navigationItem" id="Hy7-uf-hTw">
+                        <barButtonItem key="rightBarButtonItem" title="Settings" id="1xE-Bc-Ek3">
+                            <connections>
+                                <action selector="onSettings:" destination="dWy-gY-h6j" id="Hhz-RM-D1J"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="tableView" destination="p8D-pz-Hfd" id="BmQ-8W-Y5k"/>
                     </connections>

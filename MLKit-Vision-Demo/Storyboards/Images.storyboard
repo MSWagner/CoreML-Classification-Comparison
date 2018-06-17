@@ -13,8 +13,7 @@
         <!--Navigation Controller-->
         <scene sceneID="Ke8-uB-ouu">
             <objects>
-                <navigationController id="aeG-EM-H3D" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" systemItem="search" id="bXy-eb-xwE"/>
+                <navigationController storyboardIdentifier="UINavigationController" id="aeG-EM-H3D" sceneMemberID="viewController">
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="E7z-St-PJc">
                         <rect key="frame" x="0.0" y="20" width="375" height="44"/>
@@ -31,7 +30,7 @@
         <!--Flickr Images-->
         <scene sceneID="dyB-a5-CXr">
             <objects>
-                <viewController title="Flickr Images" id="0Iq-qv-uGF" customClass="FlickrPhotoViewController" customModule="MLKit_Vision_Demo" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ImagesViewController" title="Flickr Images" id="0Iq-qv-uGF" customClass="ImagesViewController" customModule="MLKit_Vision_Demo" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="6wq-nc-9Cg">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

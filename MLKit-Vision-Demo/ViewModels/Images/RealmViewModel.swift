@@ -1,18 +1,20 @@
 //
-//  FlickrViewModel.swift
+//  RealmViewModel.swift
 //  MLKit-Vision-Demo
 //
-//  Created by Matthias Wagner on 10.06.18.
+//  Created by Matthias Wagner on 16.06.18.
 //  Copyright © 2018 Matthias Wagner. All rights reserved.
 //
 
 import Foundation
 import ReactiveSwift
-import MapKit
 import Result
-import CoreData
 
-class FlickrViewModel {
+class RealmViewModel {
+
+    // MARK: - Properties
+
+    private var currentNetworkRequest: Disposable?
 
     private var _currentFlickrPhotos = MutableProperty<FlickrPhotos?>(nil)
     lazy var currentFlickrPhotos: Property<FlickrPhotos?> = {
@@ -20,11 +22,34 @@ class FlickrViewModel {
     }()
 
     private let _photos = MutableProperty<[Photo]>([])
+
+    // MARK: - ImageCollectionViewModel Stored Properties
+
     lazy var photos: Property<[Photo]> = {
         return Property(self._photos)
     }()
 
-    private var currentNetworkRequest: Disposable?
+    lazy var queryStatus: Property<QueryStatus> = {
+        let initial = QueryStatus(lastQuery: currentFlickrPhotos.value?.query,
+                                  currentPage: currentFlickrPhotos.value?.page,
+                                  pageCount: currentFlickrPhotos.value?.pages)
+
+        let producer = currentFlickrPhotos.producer.map { QueryStatus(lastQuery: $0?.query,
+                                                                      currentPage: $0?.page,
+                                                                      pageCount: $0?.pages) }
+
+        return Property(initial: initial, then: producer)
+    }()
+
+    var lastQuery: String? {
+        return queryStatus.value.lastQuery
+    }
+
+    var navigationTitle: String {
+        return Strings.ImagesViewController.realmTitle
+    }
+
+    // MARK: - Init
 
     init() {
         _currentFlickrPhotos.producer.startWithValues { [weak self] (flickrPhotos) in
@@ -34,6 +59,8 @@ class FlickrViewModel {
                 .compactMap { Photo(urlString: "https://farm\($0.farm).staticflickr.com/\($0.server)/\($0.id)_\($0.secret)_q.jpg", searchQuery: searchQuery) }
         }
     }
+
+    // MARK: - Search
 
     lazy var search: Action<(String, Int?), FlickrPhotoSearchResult, APIError> = {
 
@@ -53,6 +80,11 @@ class FlickrViewModel {
             }
         }
     }()
+}
+
+// MARK: - ImageCollectionViewModel
+
+extension RealmViewModel: ImageCollectionViewModel {
 
     func searchFor(_ query: String, page: Int? = nil) {
         currentNetworkRequest?.dispose()
@@ -74,3 +106,4 @@ class FlickrViewModel {
         searchFor(query, page: page)
     }
 }
+

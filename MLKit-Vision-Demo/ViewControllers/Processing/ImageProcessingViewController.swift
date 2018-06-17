@@ -36,7 +36,12 @@ class ImageProcessingViewController: UIViewController {
                     .configure { [weak self] (viewModel, cell, _) in
                         cell.configure(viewModel: viewModel)
                     }
-                    .height { 50 }
+                    .height { 50 },
+                ClassifiProcessResultCell.descriptor
+                    .configure { [weak self] (classification, cell, _) in
+                        cell.configure(classification: classification)
+                    }
+                    .estimatedHeight { 40 }
             ],
             sectionDescriptors: [
                 SectionDescriptor<Void>("ImageCellFooter")
@@ -44,7 +49,7 @@ class ImageProcessingViewController: UIViewController {
                         .view(self.createFooterForImageCell())
                     }
                     .footerHeight {
-                        .value(30)
+                        .value(40)
                     },
                 SectionDescriptor<Void>("Footer")
                     .footerHeight {
@@ -71,16 +76,32 @@ class ImageProcessingViewController: UIViewController {
 
     private func bindDataSource() {
         SignalProducer.combineLatest(viewModel.photo.producer,
-                                     viewModel.coreMLViewModels.producer)
-            .startWithValues { [weak self] (photo, coreMlViewModels) in
+                                     viewModel.coreMLViewModels.producer,
+                                     viewModel.filteredClassifications.producer)
+            .startWithValues { [weak self] photo, coreMlViewModels, classificationResults in
                 guard let `self` = self else { return }
 
-                let imageSection = Section(rows: [Row(self.viewModel, identifier: "ImageCell")]).with(identifier: "ImageCellFooter")
+                let imageSection = Section(rows: [Row(self.viewModel, identifier: "ImageCell")])
+                    .with(identifier: "ImageCellFooter")
 
-                let coreMLSections = Section(rows: coreMlViewModels.map { Row($0, identifier: "MLSectionCell") }).with(identifier: "Footer")
+                let rows = coreMlViewModels
+                    .map { coreMLViewModel -> [Row] in
+                        var typeRows = [Row(coreMLViewModel, identifier: "MLSectionCell")]
+
+                        let classifications = classificationResults
+                            .filter { $0.processingType == coreMLViewModel.modelType }
+                            .map { $0.classifications.map { Row($0, identifier: "MLClassifiResultCell") } }
+                            .flatMap { $0 }
+
+                        typeRows += classifications
+                        return typeRows
+                    }
+                    .flatMap { $0 }
+
+                let coreMLSections = Section(rows: rows).with(identifier: "Footer")
 
                 self.dataSource.sections = [imageSection, coreMLSections]
-                self.dataSource.reloadData(self.tableView, animated: true)
+                self.dataSource.reloadData(self.tableView, animated: false)
         }
     }
 
@@ -92,5 +113,13 @@ class ImageProcessingViewController: UIViewController {
         label.textColor = .white
         label.font = UIFont.boldSystemFont(ofSize: 12.0)
         return label
+    }
+
+    // MARK: - IBActions
+
+    @IBAction func onSettings(_ sender: Any) {
+        let settingsVC: SettingsViewController = UIStoryboard(.settings).instantiateViewController()
+        settingsVC.viewModel = viewModel.getFilterSettingsViewModel()
+        navigationController?.pushViewController(settingsVC, animated: true)
     }
 }

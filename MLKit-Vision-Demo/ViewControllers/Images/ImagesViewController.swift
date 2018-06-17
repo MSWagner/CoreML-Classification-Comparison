@@ -10,7 +10,19 @@ import UIKit
 import ReactiveSwift
 import ReactiveCocoa
 
-class FlickrPhotoViewController: UIViewController {
+protocol ImageCollectionViewModel {
+    var photos: Property<[Photo]> { get }
+    var queryStatus: Property<QueryStatus> { get }
+    var lastQuery: String? { get }
+
+    var navigationTitle: String { get }
+
+    func onNextPage()
+    func onLastPage()
+    func searchFor(_ query: String, page: Int?)
+}
+
+class ImagesViewController: UIViewController {
 
     // MARK: - IBOutlets
 
@@ -36,14 +48,12 @@ class FlickrPhotoViewController: UIViewController {
 
     private let cellIdentifier = "ImageCollectionCell"
 
-    var viewModel: FlickrViewModel!
+    var viewModel: ImageCollectionViewModel!
 
     // MARK: - Life Cycle
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        viewModel = FlickrViewModel()
 
         setupSearch()
         setupCollectionView()
@@ -108,17 +118,20 @@ class FlickrPhotoViewController: UIViewController {
         nextPageButtonBelow.tintColor = .white
 
         SignalProducer
-            .combineLatest(viewModel.currentFlickrPhotos.producer,
+            .combineLatest(viewModel.queryStatus.producer,
                            isSearchBarActive.producer)
-            .startWithValues { [weak self] lastFlickrPhotos, isSearchBarActive in
+            .startWithValues { [weak self] queryStatus, isSearchBarActive in
                 guard let `self` = self else { return }
 
                 var hasNextPage = false
                 var hasLastPage = false
 
-                if let lastFlickr = lastFlickrPhotos, lastFlickr.query != nil {
-                    hasNextPage = lastFlickr.page + 1 <= lastFlickr.pages ? true : false
-                    hasLastPage = lastFlickr.page - 1 > 0 ? true : false
+                if let page = queryStatus.currentPage,
+                    let pageCount = queryStatus.pageCount,
+                    queryStatus.lastQuery != nil {
+
+                    hasNextPage = page + 1 <= pageCount ? true : false
+                    hasLastPage = page - 1 > 0 ? true : false
                 }
 
                 self.navigationItem.rightBarButtonItem = hasNextPage ? self.nextPageButton : nil
@@ -132,12 +145,12 @@ class FlickrPhotoViewController: UIViewController {
                 self.nextPageButtonBelow.isHidden = hasNextPage ? false : true
                 self.lastPageButtonBelow.isHidden = hasLastPage ? false : true
 
-                self.navigationItem.title = lastFlickrPhotos?.page != nil
-                    ? "Page: \(lastFlickrPhotos!.page)/\(lastFlickrPhotos!.pages)"
-                    : "Flickr Image Search"
+                self.navigationItem.title = queryStatus.currentPage != nil
+                    ? "Page: \(queryStatus.currentPage!)/\(queryStatus.pageCount!)"
+                    : self.viewModel.navigationTitle
 
-                self.pageCountLabel.text = lastFlickrPhotos?.page != nil
-                    ? "Page: \(lastFlickrPhotos!.page)/\(lastFlickrPhotos!.pages)"
+                self.pageCountLabel.text = queryStatus.currentPage != nil
+                    ? "Page: \(queryStatus.currentPage!)/\(queryStatus.pageCount!)"
                     : "Enter a search tag"
             }
 
@@ -183,7 +196,7 @@ class FlickrPhotoViewController: UIViewController {
 
 // MARK: - UICollectionViewDataSource
 
-extension FlickrPhotoViewController: UICollectionViewDataSource {
+extension ImagesViewController: UICollectionViewDataSource {
 
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         if let photos = viewModel?.photos.value {
@@ -205,7 +218,7 @@ extension FlickrPhotoViewController: UICollectionViewDataSource {
 
 // MARK: - UICollectionViewDelegate
 
-extension FlickrPhotoViewController: UICollectionViewDelegate {
+extension ImagesViewController: UICollectionViewDelegate {
 
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let cell = collectionView.cellForItem(at: indexPath) as! ImageCollectionCell
@@ -223,19 +236,19 @@ extension FlickrPhotoViewController: UICollectionViewDelegate {
 
 // MARK: - UISearchResultsUpdating
 
-extension FlickrPhotoViewController: UISearchResultsUpdating {
+extension ImagesViewController: UISearchResultsUpdating {
     func updateSearchResults(for searchController: UISearchController) {
         guard let strippedString = searchController.searchBar.text?.trimmingCharacters(in: CharacterSet.whitespaces) else { return }
 
-        if strippedString.count < 3 || strippedString == viewModel.currentFlickrPhotos.value?.query { return }
+        if strippedString.count < 3 || strippedString == viewModel.lastQuery { return }
 
-        viewModel.searchFor(strippedString)
+        viewModel.searchFor(strippedString, page: nil)
     }
 }
 
 // MARK: - UISearchBarDelegate
 
-extension FlickrPhotoViewController: UISearchBarDelegate {
+extension ImagesViewController: UISearchBarDelegate {
     func searchBarShouldBeginEditing(_ searchBar: UISearchBar) -> Bool {
         isSearchBarActive.value = true
         return true
@@ -247,7 +260,7 @@ extension FlickrPhotoViewController: UISearchBarDelegate {
     }
 
     func searchBarTextDidEndEditing(_ searchBar: UISearchBar) {
-        searchController.searchBar.text = viewModel.currentFlickrPhotos.value?.query
+        searchController.searchBar.text = viewModel.lastQuery
     }
 
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
