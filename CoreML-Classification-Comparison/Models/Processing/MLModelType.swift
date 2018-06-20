@@ -27,4 +27,26 @@ enum MLModelType: String {
         case .googleLeNetPlaces: return GoogLeNetPlaces().model
         }
     }
+
+    var imageWidth: Int {
+        switch self {
+        case .mobileNet: return 224
+        case .vgg16: return 224
+        case .squeezeNet: return 227
+        case .resnet50: return 224
+        case .inceptionv3: return 299
+        case .googleLeNetPlaces: return 224
+        }
+    }
+
+    var imageHeight: Int {
+        switch self {
+        case .mobileNet: return 224
+        case .vgg16: return 224
+        case .squeezeNet: return 227
+        case .resnet50: return 224
+        case .inceptionv3: return 299
+        case .googleLeNetPlaces: return 224
+        }
+    }
 }

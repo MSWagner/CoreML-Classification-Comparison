@@ -27,7 +27,12 @@ class SettingsViewController: UIViewController {
                     .configure { [weak self] (viewModel, cell, _) in
                         cell.configure(viewModel: viewModel)
                     }
-                    .height { 80 }
+                    .height { 80 },
+                EnableSettingCell.descriptor
+                    .configure { [weak self] (viewModel, cell, indexPath) in
+                        cell.configure(viewModel: viewModel, indexPath: indexPath)
+                    }
+                    .height { 60 }
             ],
             sectionDescriptors: [
                 SectionDescriptor<Void>("Footer")
@@ -48,7 +53,11 @@ class SettingsViewController: UIViewController {
     // MARK: - Datasource
 
     private func setupDataSource() {
-        let precisionSection = Section(rows: [Row(viewModel, identifier: "PrecisionCell")]).with(identifier: "Footer")
+        let precisionSection = Section(rows: [
+            Row(viewModel, identifier: "PrecisionCell"),
+            Row(viewModel, identifier: "EnableSettingCell"),
+            Row(viewModel, identifier: "EnableSettingCell"),
+            ]).with(identifier: "Footer")
 
         dataSource.sections = [precisionSection]
         dataSource.reloadData(tableView, animated: true)

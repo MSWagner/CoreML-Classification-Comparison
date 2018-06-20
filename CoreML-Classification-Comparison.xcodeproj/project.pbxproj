@@ -12,6 +12,9 @@
 		D315145C20D6E5ED000C1206 /* FirestoreController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D315145B20D6E5ED000C1206 /* FirestoreController.swift */; };
 		D315145E20D6F353000C1206 /* ImageClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = D315145D20D6F353000C1206 /* ImageClass.swift */; };
 		D315146420D6FC41000C1206 /* FirestoreResultObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = D315146320D6FC41000C1206 /* FirestoreResultObject.swift */; };
+		D315148120DAAB54000C1206 /* UIImage+CVPixelBuffer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D315148020DAAB54000C1206 /* UIImage+CVPixelBuffer.swift */; };
+		D315148320DAAC7B000C1206 /* EnableSettingCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D315148220DAAC7B000C1206 /* EnableSettingCell.xib */; };
+		D315148520DAAD0D000C1206 /* EnableSettingCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D315148420DAAD0D000C1206 /* EnableSettingCell.swift */; };
 		D36F069A20CD816A00F192D9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D36F069920CD816A00F192D9 /* AppDelegate.swift */; };
 		D36F06A120CD816B00F192D9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D36F06A020CD816B00F192D9 /* Assets.xcassets */; };
 		D36F06AC20CD81E900F192D9 /* Podfile in Resources */ = {isa = PBXBuildFile; fileRef = D36F06AB20CD81E800F192D9 /* Podfile */; };
@@ -20,7 +23,6 @@
 		D36F06D720CD823200F192D9 /* APIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = D36F06B920CD823000F192D9 /* APIClient.swift */; };
 		D36F06D820CD823200F192D9 /* API.swift in Sources */ = {isa = PBXBuildFile; fileRef = D36F06BA20CD823000F192D9 /* API.swift */; };
 		D36F06D920CD823200F192D9 /* MoyaLogger.swift in Sources */ = {isa = PBXBuildFile; fileRef = D36F06BB20CD823000F192D9 /* MoyaLogger.swift */; };
-		D36F06DA20CD823200F192D9 /* .gitkeep in Resources */ = {isa = PBXBuildFile; fileRef = D36F06BD20CD823000F192D9 /* .gitkeep */; };
 		D36F06DD20CD823200F192D9 /* Storyboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = D36F06C320CD823100F192D9 /* Storyboard.swift */; };
 		D36F06E020CD823200F192D9 /* Appearance.swift in Sources */ = {isa = PBXBuildFile; fileRef = D36F06C820CD823100F192D9 /* Appearance.swift */; };
 		D36F06E320CD823200F192D9 /* Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = D36F06CD20CD823100F192D9 /* Config.swift */; };
@@ -83,6 +85,9 @@
 		D315145B20D6E5ED000C1206 /* FirestoreController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirestoreController.swift; sourceTree = "<group>"; };
 		D315145D20D6F353000C1206 /* ImageClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageClass.swift; sourceTree = "<group>"; };
 		D315146320D6FC41000C1206 /* FirestoreResultObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirestoreResultObject.swift; sourceTree = "<group>"; };
+		D315148020DAAB54000C1206 /* UIImage+CVPixelBuffer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+CVPixelBuffer.swift"; sourceTree = "<group>"; };
+		D315148220DAAC7B000C1206 /* EnableSettingCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EnableSettingCell.xib; sourceTree = "<group>"; };
+		D315148420DAAD0D000C1206 /* EnableSettingCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnableSettingCell.swift; sourceTree = "<group>"; };
 		D36F069620CD816A00F192D9 /* CoreML-Classification-Comparison.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "CoreML-Classification-Comparison.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D36F069920CD816A00F192D9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D36F06A020CD816B00F192D9 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -93,7 +98,6 @@
 		D36F06B920CD823000F192D9 /* APIClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIClient.swift; sourceTree = "<group>"; };
 		D36F06BA20CD823000F192D9 /* API.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = API.swift; sourceTree = "<group>"; };
 		D36F06BB20CD823000F192D9 /* MoyaLogger.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MoyaLogger.swift; sourceTree = "<group>"; };
-		D36F06BD20CD823000F192D9 /* .gitkeep */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .gitkeep; sourceTree = "<group>"; };
 		D36F06C320CD823100F192D9 /* Storyboard.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Storyboard.swift; sourceTree = "<group>"; };
 		D36F06C820CD823100F192D9 /* Appearance.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Appearance.swift; sourceTree = "<group>"; };
 		D36F06CD20CD823100F192D9 /* Config.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Config.swift; sourceTree = "<group>"; };
@@ -291,7 +295,7 @@
 		D36F06BC20CD823000F192D9 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
-				D36F06BD20CD823000F192D9 /* .gitkeep */,
+				D315148020DAAB54000C1206 /* UIImage+CVPixelBuffer.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -446,6 +450,8 @@
 			children = (
 				D3ECAFEF20D4346C00B43FED /* PrecisionCell.xib */,
 				D3ECAFF120D435B000B43FED /* PrecisionCell.swift */,
+				D315148220DAAC7B000C1206 /* EnableSettingCell.xib */,
+				D315148420DAAD0D000C1206 /* EnableSettingCell.swift */,
 			);
 			path = Settings;
 			sourceTree = "<group>";
@@ -528,6 +534,7 @@
 				D36F06F820CD8DB500F192D9 /* ImageCollectionCell.xib in Resources */,
 				D36F06A120CD816B00F192D9 /* Assets.xcassets in Resources */,
 				D36F070620CDE0E500F192D9 /* Processing.storyboard in Resources */,
+				D315148320DAAC7B000C1206 /* EnableSettingCell.xib in Resources */,
 				D36F06F020CD836700F192D9 /* LaunchScreen.storyboard in Resources */,
 				D36F06AC20CD81E900F192D9 /* Podfile in Resources */,
 				D3ECAFE520D42F2200B43FED /* Settings.storyboard in Resources */,
@@ -536,7 +543,6 @@
 				D3ECAFCF20D309E600B43FED /* CoreMLSectionHeaderCell.xib in Resources */,
 				D379CBCE20D447F8009B8EA4 /* ClassifiProcessResultCell.xib in Resources */,
 				D3ECAFF020D4346C00B43FED /* PrecisionCell.xib in Resources */,
-				D36F06DA20CD823200F192D9 /* .gitkeep in Resources */,
 				D315145A20D6E1E0000C1206 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -629,6 +635,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D315148520DAAD0D000C1206 /* EnableSettingCell.swift in Sources */,
 				D3ECAFDD20D3A21700B43FED /* Resnet50.mlmodel in Sources */,
 				D36F06D720CD823200F192D9 /* APIClient.swift in Sources */,
 				D36F06E520CD823200F192D9 /* Formatters.swift in Sources */,
@@ -676,6 +683,7 @@
 				D36F06D520CD823200F192D9 /* APIError.swift in Sources */,
 				D3ECAFE020D3A21700B43FED /* Inceptionv3.mlmodel in Sources */,
 				D3ECAFF620D43C3D00B43FED /* DesignableButton.swift in Sources */,
+				D315148120DAAB54000C1206 /* UIImage+CVPixelBuffer.swift in Sources */,
 				D3ECAFD320D3114E00B43FED /* CoreMLViewModel.swift in Sources */,
 				D3ECAFBD20D2E0E500B43FED /* KeyboardObserver.swift in Sources */,
 			);

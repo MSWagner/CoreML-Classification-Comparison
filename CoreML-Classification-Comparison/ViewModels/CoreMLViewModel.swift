@@ -56,7 +56,14 @@ class CoreMLViewModel {
         isProcessing.value = true
         DispatchQueue.global(qos: .userInitiated).async {
 
-            let handler = VNImageRequestHandler(data: imageData, orientation: .up)
+            guard let handler = self.getImageRequestHandlerWith(imageData) else {
+                DispatchQueue.main.async {
+                    self.isProcessing.value = false
+                    HUD.flash(.labeledError(title: "Error", subtitle: "Image Preprocessing failed"), delay: 1.2)
+                }
+                return
+            }
+
             self.classificationRequest = self.createMLRequestFor(self.modelType)
 
             do {
@@ -64,6 +71,7 @@ class CoreMLViewModel {
             } catch {
                 print("Failed to perform classification.\n\(error.localizedDescription)")
                 DispatchQueue.main.async {
+                    HUD.flash(.labeledError(title: "Error", subtitle: error.localizedDescription), delay: 1.2)
                     self.isProcessing.value = false
                 }
             }
@@ -85,9 +93,11 @@ class CoreMLViewModel {
             }
         }
     }
+}
 
-    // MARK: - Private Functions
+// MARK: - Model Processing
 
+extension CoreMLViewModel {
     private func createMLRequestFor(_ mlModelType: MLModelType) -> VNCoreMLRequest {
         let model = try! VNCoreMLModel(for: mlModelType.model)
 
@@ -116,11 +126,52 @@ class CoreMLViewModel {
             let imageClasses = classifications
                 .map { ImageClass(identifier: $0.identifier,
                                   confidence: Double($0.confidence))
-                }
+            }
 
             let classificationResult = ClassificationResult(processingType: self.modelType,
                                                             classifications: imageClasses)
             self.imageProcessingViewModel.addClassificationResult(classificationResult)
         }
+    }
+}
+
+// MARK: - Image Preprocessing
+
+extension CoreMLViewModel {
+
+    private func getImageRequestHandlerWith(_ data: Data) -> VNImageRequestHandler? {
+        let settings = imageProcessingViewModel.settings
+        let shouldUseGrayscale = settings.shouldUseGrayscale.value
+        let shouldUseModelImageSize = settings.shouldUseModelImageSize.value
+
+        if !shouldUseGrayscale && !shouldUseModelImageSize {
+
+            return VNImageRequestHandler(data: data, orientation: .up)
+        } else if shouldUseModelImageSize && !shouldUseGrayscale {
+
+            guard let pixelBuffer = UIImage(data: data)?
+                .pixelBuffer(width: modelType.imageWidth,
+                             height: modelType.imageHeight) else { return nil }
+
+            return VNImageRequestHandler(cvPixelBuffer: pixelBuffer, orientation: .up)
+        } else if shouldUseModelImageSize && shouldUseGrayscale {
+
+            guard let pixelBuffer = UIImage(data: data)?
+                .pixelBufferGray(width: modelType.imageWidth,
+                                 height: modelType.imageHeight) else { return nil }
+
+            return VNImageRequestHandler(cvPixelBuffer: pixelBuffer, orientation: .up)
+        } else if !shouldUseModelImageSize && shouldUseGrayscale {
+
+            guard let image = UIImage(data: data) else { return nil }
+
+            guard let pixelBuffer = image
+                .pixelBufferGray(width: Int(image.size.width),
+                                 height: Int(image.size.height)) else { return nil }
+
+            return VNImageRequestHandler(cvPixelBuffer: pixelBuffer, orientation: .up)
+        }
+
+        return nil
     }
 }

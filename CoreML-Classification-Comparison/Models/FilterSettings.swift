@@ -13,6 +13,9 @@ struct FilterSettings {
     var query: MutableProperty<String?>
     var precision: MutableProperty<Double>
 
+    var shouldUseModelImageSize = MutableProperty<Bool>(false)
+    var shouldUseGrayscale = MutableProperty<Bool>(false)
+
     init(query: String? = nil, precision: Double = 0.2) {
         self.query = MutableProperty<String?>(query)
         self.precision = MutableProperty<Double>(precision)

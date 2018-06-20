@@ -29,7 +29,7 @@ class ImageProcessingViewModel {
     private var _classifications = MutableProperty<[ClassificationResult]>([])
     var filteredClassifications = MutableProperty<[ClassificationResult]>([])
 
-    private var settings: FilterSettings
+    private(set) var settings: FilterSettings
 
     // MARK: - Init
 
