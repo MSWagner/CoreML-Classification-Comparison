@@ -31,6 +31,10 @@ class ImageProcessingViewModel {
 
     private(set) var settings: FilterSettings
 
+    lazy var shouldShowResizedImage: Property<Bool> = {
+        return Property(self.settings.shouldShowResizedImage)
+    }()
+
     // MARK: - Init
 
     init(photo: Photo) {
@@ -92,5 +96,14 @@ class ImageProcessingViewModel {
             HUD.flash(.label("No classification results found."))
             return nil
         }
+    }
+
+    func getImageViewModel(coreMLViewModel: CoreMLViewModel? = nil) -> ImageViewModel {
+        guard let coreMLViewModel = coreMLViewModel else {
+            return ImageViewModel(imageData: photo.value.image)
+        }
+
+        let image = coreMLViewModel.getResizedImageData()
+        return ImageViewModel(imageData: image)
     }
 }

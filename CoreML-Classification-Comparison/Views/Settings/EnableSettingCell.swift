@@ -22,13 +22,18 @@ class EnableSettingCell: UITableViewCell {
 
     func configure(viewModel: FilterSettingsViewModel, indexPath: IndexPath) {
         self.viewModel = viewModel
-        valueProperty = indexPath.row == 1
-            ? viewModel.settings.shouldUseModelImageSize
-            : viewModel.settings.shouldUseGrayscale
 
-        titleLabel.text = indexPath.row == 1
-            ? "Preprocess image to model size"
-            : "Preprocess image to grayscale"
+        switch viewModel.settingType! {
+        case .modelImageSize:
+            valueProperty = viewModel.settings.shouldUseModelImageSize
+            titleLabel.text = "Preprocess image to model size"
+        case .grayScale:
+            valueProperty = viewModel.settings.shouldUseGrayscale
+            titleLabel.text = "Preprocess image to grayscale"
+        case .showScaledImage:
+            valueProperty = viewModel.settings.shouldShowResizedImage
+            titleLabel.text = "Show the scaled image"
+        }
 
         valueSwitch.reactive.isOn <~ valueProperty.producer
         valueProperty <~ valueSwitch.reactive.isOnValues

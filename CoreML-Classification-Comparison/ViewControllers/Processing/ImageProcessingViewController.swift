@@ -77,21 +77,34 @@ class ImageProcessingViewController: UIViewController {
     private func bindDataSource() {
         SignalProducer.combineLatest(viewModel.photo.producer,
                                      viewModel.coreMLViewModels.producer,
-                                     viewModel.filteredClassifications.producer)
-            .startWithValues { [weak self] photo, coreMlViewModels, classificationResults in
+                                     viewModel.filteredClassifications.producer,
+                                     viewModel.shouldShowResizedImage.producer)
+            .startWithValues { [weak self] photo, coreMlViewModels, classificationResults, shouldShowResizedImage in
                 guard let `self` = self else { return }
 
-                let imageSection = Section(rows: [Row(self.viewModel, identifier: "ImageCell")])
+                let imageSection = Section(rows: [Row(self.viewModel.getImageViewModel(), identifier: "ImageCell")])
                     .with(identifier: "ImageCellFooter")
 
                 let rows = coreMlViewModels
                     .map { coreMLViewModel -> [Row] in
-                        var typeRows = [Row(coreMLViewModel, identifier: "MLSectionCell")]
+                        var typeRows = [
+                            Row(coreMLViewModel, identifier: "MLSectionCell")
+                        ]
 
-                        let classifications = classificationResults
+                        let classifications = classificationResults.lazy
                             .filter { $0.processingType == coreMLViewModel.modelType }
-                            .map { $0.classifications.map { Row($0, identifier: "MLClassifiResultCell") } }
+                            .map { $0.classifications
+                                .map {
+                                    Row($0, identifier: "MLClassifiResultCell")
+                                }
+                            }
                             .flatMap { $0 }
+
+                        if shouldShowResizedImage && !classifications.isEmpty  {
+                            typeRows.append(
+                                Row(self.viewModel.getImageViewModel(coreMLViewModel: coreMLViewModel),identifier: "ImageCell")
+                            )
+                        }
 
                         typeRows += classifications
                         return typeRows

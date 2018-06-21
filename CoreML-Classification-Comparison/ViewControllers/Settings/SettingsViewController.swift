@@ -47,19 +47,29 @@ class SettingsViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        setupDataSource()
+        bindDataSource()
     }
 
     // MARK: - Datasource
 
-    private func setupDataSource() {
-        let precisionSection = Section(rows: [
-            Row(viewModel, identifier: "PrecisionCell"),
-            Row(viewModel, identifier: "EnableSettingCell"),
-            Row(viewModel, identifier: "EnableSettingCell"),
-            ]).with(identifier: "Footer")
+    private func bindDataSource() {
 
-        dataSource.sections = [precisionSection]
-        dataSource.reloadData(tableView, animated: true)
+        viewModel.settings.shouldUseModelImageSize.producer
+            .startWithValues { [weak self] isImageResizingOn in
+                guard let `self` = self else { return }
+
+                var rows: [Row] = [
+                    Row(self.viewModel, identifier: "PrecisionCell"),
+                    Row(self.viewModel.withType(.modelImageSize), identifier: "EnableSettingCell"),
+                    Row(self.viewModel.withType(.grayScale), identifier: "EnableSettingCell")
+                ]
+
+                if isImageResizingOn {
+                    rows.append(Row(self.viewModel.withType(.showScaledImage), identifier: "EnableSettingCell"))
+                }
+
+                self.dataSource.sections = [Section(rows: rows).with(identifier: "Footer")]
+                self.dataSource.reloadData(self.tableView, animated: false)
+            }
     }
 }

@@ -15,6 +15,7 @@ struct FilterSettings {
 
     var shouldUseModelImageSize = MutableProperty<Bool>(false)
     var shouldUseGrayscale = MutableProperty<Bool>(false)
+    var shouldShowResizedImage = MutableProperty<Bool>(false)
 
     init(query: String? = nil, precision: Double = 0.2) {
         self.query = MutableProperty<String?>(query)

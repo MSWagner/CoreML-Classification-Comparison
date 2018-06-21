@@ -18,30 +18,29 @@ class ImageTableViewCell: UITableViewCell {
 
     // MARK: - Properties
 
-    var viewModel: ImageProcessingViewModel!
+    var viewModel: ImageViewModel!
 
     // MARK: - Configure
 
-    func configure(viewModel: ImageProcessingViewModel) {
+    func configure(viewModel: ImageViewModel) {
         self.viewModel = viewModel
 
         photoView.af_cancelImageRequest()
         photoView.image = nil
 
-        let photo = viewModel.photo.value
+        let imageData = viewModel.imageData
 
-        if let image = photo.image {
-            photoView.image =  UIImage(data: image)
-        } else {
-            let url = photo.url
-            photoView.af_setImage(withURL: url) 
+        if let imageData = imageData {
+            photoView.image =  UIImage(data: imageData)
+        } else if let url = viewModel.url {
+            photoView.af_setImage(withURL: url)
         }
     }
 
 }
 
 extension ImageTableViewCell {
-    static var descriptor: CellDescriptor<ImageProcessingViewModel, ImageTableViewCell> {
+    static var descriptor: CellDescriptor<ImageViewModel, ImageTableViewCell> {
         return CellDescriptor("ImageCell")
             .configure { (data, cell, _) in
                 cell.configure(viewModel: data)

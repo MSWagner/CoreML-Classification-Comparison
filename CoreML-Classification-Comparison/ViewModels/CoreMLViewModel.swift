@@ -21,6 +21,14 @@ class CoreMLViewModel {
 
     private var classificationRequest: VNCoreMLRequest!
 
+    private var shouldNotPreProcess: Bool {
+        let settings = imageProcessingViewModel.settings
+        let shouldUseGrayscale = settings.shouldUseGrayscale.value
+        let shouldUseModelImageSize = settings.shouldUseModelImageSize.value
+
+        return !shouldUseGrayscale && !shouldUseModelImageSize
+    }
+
     // MARK: - Init
 
     init(imageProcessingViewModel: ImageProcessingViewModel, type: MLModelType) {
@@ -93,6 +101,12 @@ class CoreMLViewModel {
             }
         }
     }
+
+    func getResizedImageData() -> Data? {
+        guard !shouldNotPreProcess, let pixelBuffer = getPixelBuffer(), let image = UIImage(pixelBuffer: pixelBuffer) else { return nil }
+
+        return image.png
+    }
 }
 
 // MARK: - Model Processing
@@ -139,39 +153,43 @@ extension CoreMLViewModel {
 
 extension CoreMLViewModel {
 
-    private func getImageRequestHandlerWith(_ data: Data) -> VNImageRequestHandler? {
+    private func getPixelBuffer() -> CVPixelBuffer? {
+        guard let imageData = imageProcessingViewModel.photo.value.image else { return nil }
+
         let settings = imageProcessingViewModel.settings
         let shouldUseGrayscale = settings.shouldUseGrayscale.value
         let shouldUseModelImageSize = settings.shouldUseModelImageSize.value
 
-        if !shouldUseGrayscale && !shouldUseModelImageSize {
+        if shouldUseModelImageSize && !shouldUseGrayscale {
 
-            return VNImageRequestHandler(data: data, orientation: .up)
-        } else if shouldUseModelImageSize && !shouldUseGrayscale {
+            return UIImage(data: imageData)?.pixelBuffer(width: modelType.imageWidth,
+                                                         height: modelType.imageHeight)
 
-            guard let pixelBuffer = UIImage(data: data)?
-                .pixelBuffer(width: modelType.imageWidth,
-                             height: modelType.imageHeight) else { return nil }
-
-            return VNImageRequestHandler(cvPixelBuffer: pixelBuffer, orientation: .up)
         } else if shouldUseModelImageSize && shouldUseGrayscale {
 
-            guard let pixelBuffer = UIImage(data: data)?
-                .pixelBufferGray(width: modelType.imageWidth,
-                                 height: modelType.imageHeight) else { return nil }
+            return UIImage(data: imageData)?.pixelBufferGray(width: modelType.imageWidth,
+                                                             height: modelType.imageHeight)
 
-            return VNImageRequestHandler(cvPixelBuffer: pixelBuffer, orientation: .up)
         } else if !shouldUseModelImageSize && shouldUseGrayscale {
 
-            guard let image = UIImage(data: data) else { return nil }
+            guard let image = UIImage(data: imageData) else { return nil }
 
-            guard let pixelBuffer = image
-                .pixelBufferGray(width: Int(image.size.width),
-                                 height: Int(image.size.height)) else { return nil }
-
-            return VNImageRequestHandler(cvPixelBuffer: pixelBuffer, orientation: .up)
+            return image.pixelBufferGray(width: Int(image.size.width),
+                                         height: Int(image.size.height))
         }
 
         return nil
+    }
+
+    private func getImageRequestHandlerWith(_ data: Data) -> VNImageRequestHandler? {
+
+        if shouldNotPreProcess {
+
+            return VNImageRequestHandler(data: data, orientation: .up)
+        } else {
+            guard let pixelBuffer = getPixelBuffer() else { return nil }
+
+            return VNImageRequestHandler(cvPixelBuffer: pixelBuffer, orientation: .up)
+        }
     }
 }
