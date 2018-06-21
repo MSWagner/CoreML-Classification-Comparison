@@ -11,7 +11,7 @@ import AlamofireImage
 
 class ImageCollectionCell: UICollectionViewCell {
 
-    @IBOutlet weak var imageView: UIImageView!
+    @IBOutlet private weak var imageView: UIImageView!
 
     var photo: Photo!
 

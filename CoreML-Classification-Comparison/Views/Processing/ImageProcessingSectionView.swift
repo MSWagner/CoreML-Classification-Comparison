@@ -10,8 +10,8 @@ import UIKit
 
 class ImageProcessingSectionView: UIView {
 
-    @IBOutlet var contentView: UIView!
-    @IBOutlet weak var hideButton: UIButton!
+    @IBOutlet private var contentView: UIView!
+    @IBOutlet private weak var hideButton: UIButton!
 
     var onHideButton: (() -> Void)?
     

@@ -14,7 +14,7 @@ class ImageTableViewCell: UITableViewCell {
 
     // MARK: - IBOutlets
 
-    @IBOutlet weak var photoView: UIImageView!
+    @IBOutlet private weak var photoView: UIImageView!
 
     // MARK: - Properties
 

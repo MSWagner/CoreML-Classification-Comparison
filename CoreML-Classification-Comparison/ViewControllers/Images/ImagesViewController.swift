@@ -26,13 +26,13 @@ class ImagesViewController: UIViewController {
 
     // MARK: - IBOutlets
 
-    @IBOutlet weak var collectionView: UICollectionView!
-    @IBOutlet weak var flowLayout: UICollectionViewFlowLayout!
-    @IBOutlet weak var nextPageButtonBelow: UIButton!
-    @IBOutlet weak var lastPageButtonBelow: UIButton!
-    @IBOutlet weak var pageControlView: UIView!
-    @IBOutlet weak var pageCountLabel: UILabel!
-    @IBOutlet weak var pageControlHeightConstraint: NSLayoutConstraint!
+    @IBOutlet private weak var collectionView: UICollectionView!
+    @IBOutlet private weak var flowLayout: UICollectionViewFlowLayout!
+    @IBOutlet private weak var nextPageButtonBelow: UIButton!
+    @IBOutlet private weak var lastPageButtonBelow: UIButton!
+    @IBOutlet private weak var pageControlView: UIView!
+    @IBOutlet private weak var pageCountLabel: UILabel!
+    @IBOutlet private weak var pageControlHeightConstraint: NSLayoutConstraint!
 
     // MARK: - NavigationBar Buttons
 

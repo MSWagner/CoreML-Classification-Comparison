@@ -14,7 +14,7 @@ class PrecisionCell: UITableViewCell {
 
     // MARK: - IBOutlets
 
-    @IBOutlet weak var precisionSlider: UISlider!
+    @IBOutlet private weak var precisionSlider: UISlider!
 
     // MARK: - Properties
 

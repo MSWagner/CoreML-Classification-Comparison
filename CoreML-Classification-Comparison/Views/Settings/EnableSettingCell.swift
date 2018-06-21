@@ -13,8 +13,8 @@ import ReactiveCocoa
 
 class EnableSettingCell: UITableViewCell {
 
-    @IBOutlet weak var titleLabel: UILabel!
-    @IBOutlet weak var valueSwitch: UISwitch!
+    @IBOutlet private weak var titleLabel: UILabel!
+    @IBOutlet private weak var valueSwitch: UISwitch!
 
     private var viewModel: FilterSettingsViewModel!
 

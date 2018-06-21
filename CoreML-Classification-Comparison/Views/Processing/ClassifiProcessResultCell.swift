@@ -11,8 +11,8 @@ import MBDataSource
 
 class ClassifiProcessResultCell: UITableViewCell {
 
-    @IBOutlet weak var identifierLabel: UILabel!
-    @IBOutlet weak var confidenceLabel: UILabel!
+    @IBOutlet private weak var identifierLabel: UILabel!
+    @IBOutlet private weak var confidenceLabel: UILabel!
     
     func configure(imageClass: ImageClass) {
         identifierLabel.text = imageClass.identifier

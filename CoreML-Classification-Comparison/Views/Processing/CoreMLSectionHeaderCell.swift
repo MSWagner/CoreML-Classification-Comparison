@@ -14,11 +14,11 @@ class CoreMLSectionHeaderCell: UITableViewCell {
 
     // MARK: - IBOutlets
 
-    @IBOutlet weak var saveButtonWidthConstraint: NSLayoutConstraint!
+    @IBOutlet private weak var saveButtonWidthConstraint: NSLayoutConstraint!
 
-    @IBOutlet weak var modelNameLabel: UILabel!
-    @IBOutlet weak var startProcessingButton: DesignableButton!
-    @IBOutlet weak var saveButton: DesignableButton!
+    @IBOutlet private weak var modelNameLabel: UILabel!
+    @IBOutlet private weak var startProcessingButton: DesignableButton!
+    @IBOutlet private weak var saveButton: DesignableButton!
 
     // MARK: - Properties
 
