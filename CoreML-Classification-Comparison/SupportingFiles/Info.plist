@@ -44,5 +44,11 @@
 	<false/>
 	<key>_Configuration</key>
 	<string>$(CONFIGURATION)</string>
+	<key>NSCameraUsageDescription</key>
+	<string>We need your permission to take a photo with a camera, if you want to use this for furhter preprocessing.</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>We need your permission to take a photo from the library, if you want to use these photos for further preprocessing.</string>
+	<key>NSPhotoLibraryAddUsageDescription</key>
+	<string>We need your permission to take a photo from the library, if you want to use these photos for further preprocessing.</string>
 </dict>
 </plist>

@@ -20,6 +20,19 @@ public struct Strings {
         static let flickrTitle = Strings.localized("images_flickr_title", value: "Flirckr Image Search")
     }
 
+    public struct Alert {
+        static let ok = Strings.localized("Shared.buttons.ok", value: "OK")
+        static let confirm = Strings.localized("Shared.buttons.confirm", value: "Confirm")
+        static let cancel = Strings.localized("Shared.buttons.cancel", value: "Cancel")
+        static let save = Strings.localized("Shared.buttons.save", value: "Save")
+        static let discard = Strings.localized("Shared.buttons.discard", value: "Discard")
+        static let delete = Strings.localized("Shared.buttons.delete", value: "Delete")
+        static let settings = Strings.localized("Shared.buttons.settings", value: "Settings")
+        static let library = Strings.localized("Shared.titles.library", value: "Library")
+        static let camera = Strings.localized("Shared.titles.camera", value: "Camera")
+        static let assume = Strings.localized("Shared.buttons.assume", value: "Assume")
+    }
+
     // settings this closure allows you to use a custom localization provider, such as OneSky over-the-air
     // by default, NSLocalizedString will load the strings from the main bundle's Localizable.strings file
     public static var customLocalizationClosure: ((String, String?, Bundle, String, String) -> String)?

@@ -13,6 +13,6 @@ struct Appearance {
 
         UIApplication.shared.statusBarStyle = .lightContent
 
-        UITabBar.appearance().tintColor = Colors.Main.red
+        UITabBar.appearance().tintColor = UIColor.darkGray
     }
 }

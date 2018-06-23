@@ -46,6 +46,7 @@
 		D36F071020CDE68400F192D9 /* ProcessingSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = D36F070F20CDE68400F192D9 /* ProcessingSettings.swift */; };
 		D376243B20DC50E700BA260F /* ImageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D376243A20DC50E700BA260F /* ImageViewModel.swift */; };
 		D376243D20DC5C3D00BA260F /* UIImage+Data?.swift in Sources */ = {isa = PBXBuildFile; fileRef = D376243C20DC5C3D00BA260F /* UIImage+Data?.swift */; };
+		D376244320DE851700BA260F /* PermissionProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = D376244220DE851700BA260F /* PermissionProtocol.swift */; };
 		D379CBC520D43CCC009B8EA4 /* SimpleButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = D379CBC420D43CCC009B8EA4 /* SimpleButton.swift */; };
 		D379CBC820D43EDC009B8EA4 /* SimpleButtonControlState.swift in Sources */ = {isa = PBXBuildFile; fileRef = D379CBC720D43EDC009B8EA4 /* SimpleButtonControlState.swift */; };
 		D379CBCA20D43F10009B8EA4 /* SimpleButtonStateChangeValue.swift in Sources */ = {isa = PBXBuildFile; fileRef = D379CBC920D43F10009B8EA4 /* SimpleButtonStateChangeValue.swift */; };
@@ -123,6 +124,7 @@
 		D36F070F20CDE68400F192D9 /* ProcessingSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProcessingSettings.swift; sourceTree = "<group>"; };
 		D376243A20DC50E700BA260F /* ImageViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageViewModel.swift; sourceTree = "<group>"; };
 		D376243C20DC5C3D00BA260F /* UIImage+Data?.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Data?.swift"; sourceTree = "<group>"; };
+		D376244220DE851700BA260F /* PermissionProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PermissionProtocol.swift; sourceTree = "<group>"; };
 		D379CBC420D43CCC009B8EA4 /* SimpleButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimpleButton.swift; sourceTree = "<group>"; };
 		D379CBC720D43EDC009B8EA4 /* SimpleButtonControlState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimpleButtonControlState.swift; sourceTree = "<group>"; };
 		D379CBC920D43F10009B8EA4 /* SimpleButtonStateChangeValue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimpleButtonStateChangeValue.swift; sourceTree = "<group>"; };
@@ -370,6 +372,7 @@
 				D36F06CF20CD823200F192D9 /* Decoders.swift */,
 				D36F06D020CD823200F192D9 /* Formatters.swift */,
 				D3ECAFBC20D2E0E500B43FED /* KeyboardObserver.swift */,
+				D376244220DE851700BA260F /* PermissionProtocol.swift */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -691,6 +694,7 @@
 				D36F06D520CD823200F192D9 /* APIError.swift in Sources */,
 				D3ECAFE020D3A21700B43FED /* Inceptionv3.mlmodel in Sources */,
 				D3ECAFF620D43C3D00B43FED /* DesignableButton.swift in Sources */,
+				D376244320DE851700BA260F /* PermissionProtocol.swift in Sources */,
 				D315148120DAAB54000C1206 /* UIImage+CVPixelBuffer.swift in Sources */,
 				D3ECAFD320D3114E00B43FED /* CoreMLViewModel.swift in Sources */,
 				D3ECAFBD20D2E0E500B43FED /* KeyboardObserver.swift in Sources */,
