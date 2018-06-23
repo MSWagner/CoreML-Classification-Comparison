@@ -30,7 +30,7 @@
         <!--Flickr Images-->
         <scene sceneID="dyB-a5-CXr">
             <objects>
-                <viewController storyboardIdentifier="ImagesViewController" title="Flickr Images" id="0Iq-qv-uGF" customClass="ImagesViewController" customModule="MLKit_Vision_Demo" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ImagesViewController" title="Flickr Images" id="0Iq-qv-uGF" customClass="ImagesViewController" customModule="CoreML_Classification_Comparison" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="6wq-nc-9Cg">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -99,14 +99,24 @@
                                 </collectionViewFlowLayout>
                                 <cells/>
                             </collectionView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="{EmptyViewDescription}" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fqH-UV-Q3h">
+                                <rect key="frame" x="30" y="209" width="315" height="20.5"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="JFM-JG-l6O" firstAttribute="top" secondItem="Zpo-Cx-0Rk" secondAttribute="bottom" id="03g-lk-Tgy"/>
                             <constraint firstItem="Zpo-Cx-0Rk" firstAttribute="top" secondItem="ByY-63-Wdk" secondAttribute="top" id="6Ng-Ah-nk4"/>
+                            <constraint firstItem="fqH-UV-Q3h" firstAttribute="centerX" secondItem="JFM-JG-l6O" secondAttribute="centerX" id="BWm-YG-Vcu"/>
                             <constraint firstItem="JFM-JG-l6O" firstAttribute="bottom" secondItem="6wq-nc-9Cg" secondAttribute="bottom" id="CBh-N7-o5b"/>
                             <constraint firstItem="JFM-JG-l6O" firstAttribute="leading" secondItem="6wq-nc-9Cg" secondAttribute="leading" id="Jma-Ix-4nK"/>
+                            <constraint firstItem="fqH-UV-Q3h" firstAttribute="leading" secondItem="ByY-63-Wdk" secondAttribute="leading" constant="30" id="M4t-jB-lhx"/>
+                            <constraint firstItem="ByY-63-Wdk" firstAttribute="trailing" secondItem="fqH-UV-Q3h" secondAttribute="trailing" constant="30" id="Q4d-uA-1VS"/>
                             <constraint firstItem="JFM-JG-l6O" firstAttribute="trailing" secondItem="ByY-63-Wdk" secondAttribute="trailing" id="RRa-hg-k8s"/>
+                            <constraint firstItem="fqH-UV-Q3h" firstAttribute="top" secondItem="Zpo-Cx-0Rk" secondAttribute="bottom" constant="100" id="W4u-r6-8QK"/>
                             <constraint firstItem="Zpo-Cx-0Rk" firstAttribute="trailing" secondItem="ByY-63-Wdk" secondAttribute="trailing" id="uR2-zk-1bR"/>
                             <constraint firstItem="Zpo-Cx-0Rk" firstAttribute="leading" secondItem="ByY-63-Wdk" secondAttribute="leading" id="yJh-d4-3x2"/>
                         </constraints>
@@ -115,6 +125,7 @@
                     <navigationItem key="navigationItem" id="h2Y-Sw-HzH"/>
                     <connections>
                         <outlet property="collectionView" destination="JFM-JG-l6O" id="kks-eb-syl"/>
+                        <outlet property="emptyViewLabel" destination="fqH-UV-Q3h" id="YTM-D1-DW2"/>
                         <outlet property="flowLayout" destination="xVI-6m-Zk1" id="m80-Kl-JKu"/>
                         <outlet property="lastPageButtonBelow" destination="4EQ-WH-Fez" id="tjG-HZ-ChH"/>
                         <outlet property="nextPageButtonBelow" destination="Xnp-cT-cBu" id="wW1-Az-VFA"/>

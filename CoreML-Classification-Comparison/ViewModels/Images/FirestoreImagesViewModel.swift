@@ -14,36 +14,45 @@ class FirestoreImagesViewModel {
 
     // MARK: - Properties
 
-    private var currentNetworkRequest: Disposable?
+    private var currentFirestoreURLs = MutableProperty<[String]>([])
+    private var currentPage = MutableProperty<Int?>(nil)
+    lazy var pageCount: Property<Int?> = {
 
-    private var _currentFlickrPhotos = MutableProperty<FlickrPhotos?>(nil)
-    lazy var currentFlickrPhotos: Property<FlickrPhotos?> = {
-        return Property(self._currentFlickrPhotos)
-    }()
+        var imageCountFunction: (Int) -> Int = { imageCount in
+            return imageCount > 0 ? (imageCount / 30 >= 1 ? imageCount / 30 : 1) : 0
+        }
 
-    private let _photos = MutableProperty<[Photo]>([])
-
-    // MARK: - ImageCollectionViewModel Stored Properties
-
-    lazy var photos: Property<[Photo]> = {
-        return Property(self._photos)
-    }()
-
-    lazy var queryStatus: Property<QueryStatus> = {
-        let initial = QueryStatus(lastQuery: currentFlickrPhotos.value?.query,
-                                  currentPage: currentFlickrPhotos.value?.page,
-                                  pageCount: currentFlickrPhotos.value?.pages)
-
-        let producer = currentFlickrPhotos.producer.map { QueryStatus(lastQuery: $0?.query,
-                                                                      currentPage: $0?.page,
-                                                                      pageCount: $0?.pages) }
+        let initial = imageCountFunction(currentFirestoreURLs.value.count)
+        let producer = currentFirestoreURLs.producer.map { imageCountFunction($0.count) }
 
         return Property(initial: initial, then: producer)
     }()
 
+    private let _photos = MutableProperty<[Photo]>([])
+    lazy var photos: Property<[Photo]> = {
+        return Property(self._photos)
+    }()
+
+    private var _lastQuery = MutableProperty<String?>(nil)
     var lastQuery: String? {
-        return queryStatus.value.lastQuery
+        return _lastQuery.value
     }
+
+    lazy var queryStatus: Property<QueryStatus> = {
+        let initial = QueryStatus(lastQuery: lastQuery,
+                                  currentPage: currentPage.value,
+                                  pageCount: pageCount.value)
+
+        let producer = SignalProducer
+            .combineLatest(_lastQuery.producer,
+                           currentPage.producer,
+                           pageCount.producer)
+            .map { QueryStatus(lastQuery: $0.0,
+                               currentPage: $0.1,
+                               pageCount: $0.2) }
+
+        return Property(initial: initial, then: producer)
+    }()
 
     var navigationTitle: String {
         return Strings.ImagesViewController.realmTitle
@@ -52,34 +61,54 @@ class FirestoreImagesViewModel {
     // MARK: - Init
 
     init() {
-        _currentFlickrPhotos.producer.startWithValues { [weak self] (flickrPhotos) in
-            guard let `self` = self, let flickrPhotos = flickrPhotos, let searchQuery = flickrPhotos.query else { return }
+        _lastQuery.producer
+            .startWithValues { [weak self] lastQuery in
+                guard let `self` = self else { return }
 
-            self._photos.value = flickrPhotos.photo
-                .compactMap { Photo(urlString: "https://farm\($0.farm).staticflickr.com/\($0.server)/\($0.id)_\($0.secret)_q.jpg", searchQuery: searchQuery) }
-        }
-    }
+                let fireStoreObjects = FirestoreController.shared.firestoreResultObjects
 
-    // MARK: - Search
+                if let query = lastQuery {
+                    let queriedImageURLs = fireStoreObjects.value
+                        .filter { $0.identifier.contains(query) }
+                        .flatMap { $0.imageResults.map { $0.url } }
 
-    lazy var search: Action<(String, Int?), FlickrPhotoSearchResult, APIError> = {
+                    let queriedImageURLSet = Set<String>(queriedImageURLs)
 
-        return Action { [weak self] queryAndPage in
-
-            let query = queryAndPage.0
-            var page = queryAndPage.1 ?? 1
-
-            return APIClient
-                .request(.photosSearch(text: query, page: page), type: FlickrPhotoSearchResult.self)
-                .on { [weak self] (value) in
-                    guard let `self` = self else { return }
-
-                    var photos = value.photos
-                    photos.query = query
-                    self._currentFlickrPhotos.value = photos
+                    self.currentFirestoreURLs.value = Array(queriedImageURLSet)
+                } else {
+                    self.currentFirestoreURLs.value = []
+                }
             }
-        }
-    }()
+
+        SignalProducer.combineLatest(currentFirestoreURLs.producer,
+                                     currentPage.producer)
+            .startWithValues { [weak self] urls, currentPage in
+                guard let `self` = self else { return }
+
+                if let page = currentPage, let query = self.lastQuery, urls.count > 0 {
+                    let startIndex = page > 1 ? (page * 30) - 1 : 0
+                    var endIndex = startIndex + 30
+
+                    endIndex = endIndex > urls.count - 1 ? urls.count - 1 : endIndex
+
+                    var pageUrls = [String]()
+
+                    if startIndex != endIndex {
+                        for index in (startIndex...endIndex) {
+                            pageUrls.append(urls[index])
+                        }
+                    } else {
+                        pageUrls.append(urls[startIndex])
+                    }
+
+                    self._photos.value = pageUrls
+                        .compactMap { Photo(urlString: $0, searchQuery: query) }
+
+                } else {
+                    self._photos.value = []
+                }
+            }
+    }
 }
 
 // MARK: - ImageCollectionViewModel
@@ -87,23 +116,25 @@ class FirestoreImagesViewModel {
 extension FirestoreImagesViewModel: ImageCollectionViewModel {
 
     func searchFor(_ query: String, page: Int? = nil) {
-        currentNetworkRequest?.dispose()
-        currentNetworkRequest = search.apply((query, page)).start()
+        _lastQuery.value = query
+        self.currentPage.value = page != nil ? page : 1
     }
 
     func onNextPage() {
-        guard let currentPhotos = self._currentFlickrPhotos.value, let query = currentPhotos.query else { return }
-        let pageCount = currentPhotos.pages
-        let page = currentPhotos.page + 1 <= pageCount ? currentPhotos.page + 1 : 1
+        guard let currentPage = currentPage.value, let pageCount = pageCount.value, let query = lastQuery else { return }
 
-        searchFor(query, page: page)
+        let nextPage = currentPage + 1 <= pageCount ? currentPage + 1 : 1
+
+        searchFor(query, page: nextPage)
+
     }
 
     func onLastPage() {
-        guard let currentPhotos = self._currentFlickrPhotos.value, let query = currentPhotos.query else { return }
-        let page = currentPhotos.page - 1 > 0 ? currentPhotos.page - 1 : 1
+        guard let currentPage = currentPage.value, let query = lastQuery else { return }
 
-        searchFor(query, page: page)
+        let nextPage = currentPage - 1 > 0 ? currentPage - 1 : 1
+
+        searchFor(query, page: nextPage)
     }
 }
 

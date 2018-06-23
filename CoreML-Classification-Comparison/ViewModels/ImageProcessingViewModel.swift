@@ -69,6 +69,11 @@ class ImageProcessingViewModel {
 
                 self.filteredClassifications.value = newFilteredClassifications
             }
+
+        if let savedResults = FirestoreController.shared.classificationDict[photo.url.absoluteString] {
+
+            _classifications.value = savedResults
+        }
     }
 
     // MARK: - Functions
@@ -100,7 +105,7 @@ class ImageProcessingViewModel {
 
     func getImageViewModel(coreMLViewModel: CoreMLViewModel? = nil) -> ImageViewModel {
         guard let coreMLViewModel = coreMLViewModel else {
-            return ImageViewModel(imageData: photo.value.image)
+            return ImageViewModel(imageData: photo.value.image, url: photo.value.url)
         }
 
         let image = coreMLViewModel.getResizedImageData()

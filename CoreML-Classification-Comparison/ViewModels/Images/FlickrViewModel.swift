@@ -17,6 +17,7 @@ class FlickrViewModel {
     // MARK: - Properties
 
     private var currentNetworkRequest: Disposable?
+    private var reachability = Reachability()
 
     private var _currentFlickrPhotos = MutableProperty<FlickrPhotos?>(nil)
     lazy var currentFlickrPhotos: Property<FlickrPhotos?> = {
@@ -24,11 +25,6 @@ class FlickrViewModel {
     }()
 
     private let _photos = MutableProperty<[Photo]>([])
-
-    var reachability = Reachability()
-
-    // MARK: - ImageCollectionViewModel Stored Properties
-
     lazy var photos: Property<[Photo]> = {
         return Property(self._photos)
     }()

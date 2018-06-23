@@ -28,12 +28,16 @@ class ImagesViewController: UIViewController {
 
     @IBOutlet private weak var collectionView: UICollectionView!
     @IBOutlet private weak var flowLayout: UICollectionViewFlowLayout!
+
     @IBOutlet private weak var nextPageButtonBelow: UIButton!
     @IBOutlet private weak var lastPageButtonBelow: UIButton!
+
     @IBOutlet private weak var pageControlView: UIView!
     @IBOutlet private weak var pageCountLabel: UILabel!
     @IBOutlet private weak var pageControlHeightConstraint: NSLayoutConstraint!
 
+    @IBOutlet private weak var emptyViewLabel: UILabel!
+    
     // MARK: - NavigationBar Buttons
 
     var nextPageButton: UIBarButtonItem!
@@ -55,6 +59,7 @@ class ImagesViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        setupEmptyViewLabel()
         setupSearch()
         setupCollectionView()
         bindViewModel()
@@ -72,6 +77,11 @@ class ImagesViewController: UIViewController {
     }
 
     // MARK: - Search Setup
+
+    private func setupEmptyViewLabel() {
+        emptyViewLabel.text = Strings.ImagesViewController.emptyViewDescription
+        emptyViewLabel.reactive.isHidden <~ viewModel.photos.producer.map { $0.count > 0 }
+    }
 
     private func setupCollectionView() {
         collectionView.dataSource = self

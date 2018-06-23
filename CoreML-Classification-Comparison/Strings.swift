@@ -18,6 +18,7 @@ public struct Strings {
     public struct ImagesViewController {
         static let realmTitle = Strings.localized("images_realm_title", value: "Database Image Search")
         static let flickrTitle = Strings.localized("images_flickr_title", value: "Flirckr Image Search")
+        static let emptyViewDescription = Strings.localized("emtpy_view_description", value: "Enter tags into the search bar to find images. At the moment there are no pictures found.")
     }
 
     public struct Alert {

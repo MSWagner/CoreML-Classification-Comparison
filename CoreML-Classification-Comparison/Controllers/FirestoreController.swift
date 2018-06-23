@@ -17,26 +17,28 @@ class FirestoreController {
         return db.collection("tags")
     }()
 
-    private var _classificationResults = MutableProperty<[FirestoreResultObject]>([])
-    lazy var classificationResults: Property<[FirestoreResultObject]> = {
-        return Property(self._classificationResults)
+    private(set) var classificationDict = [String: [ClassificationResult]]()
+
+    private var _firestoreResultObjects = MutableProperty<[FirestoreResultObject]>([])
+    lazy var firestoreResultObjects: Property<[FirestoreResultObject]> = {
+        return Property(self._firestoreResultObjects)
     }()
 
     static let shared = FirestoreController()
 
     private init() {
 
-        tagsRef.addSnapshotListener { [weak self] (querySnapshot, error) in
+        tagsRef.addSnapshotListener { [weak self] querySnapshot, error in
             print("Update")
 
             if error != nil { return }
 
             guard let documents = querySnapshot?.documents else {
-                self?._classificationResults.value = []
+                self?._firestoreResultObjects.value = []
                 return
             }
 
-            let classificationResults = documents
+            let firestoreResultObjects = documents
                 .map { document -> FirestoreResultObject in
                     let idComponents = document.documentID.components(separatedBy: "&")
                     let identifier = idComponents.first!
@@ -44,8 +46,32 @@ class FirestoreController {
 
                     let dataDict = document.data()
 
+                    var classificationEntries = [String: [ImageClass]]()
+
                     let imagePrecisionResults = (dataDict["images"] as! [String : Double])
-                        .map { ImagePrecisionResult(url: $0.key, precision: $0.value) }
+                        .map { entry -> ImagePrecisionResult in
+
+                            let classificationEntry = ImageClass(identifier: identifier, confidence: entry.value)
+                            if var classes = classificationEntries[entry.key] {
+                                classes.append(classificationEntry)
+                                classificationEntries[entry.key] = classes
+                            } else {
+                                classificationEntries[entry.key] = [classificationEntry]
+                            }
+
+                            return ImagePrecisionResult(url: entry.key, precision: entry.value)
+                        }
+
+                    classificationEntries.forEach { url, imageClasses in
+                        let classResult = ClassificationResult(processingType: type!, classifications: imageClasses)
+
+                        if var oldClassResult = self?.classificationDict[url] {
+                            oldClassResult.append(classResult)
+                            self?.classificationDict[url] = oldClassResult
+                        } else {
+                            self?.classificationDict[url] = [classResult]
+                        }
+                    }
 
                     let result = FirestoreResultObject(identifier: identifier,
                                                        type: type!,
@@ -54,7 +80,7 @@ class FirestoreController {
                     return result
                 }
 
-            self?._classificationResults.value = classificationResults
+            self?._firestoreResultObjects.value = firestoreResultObjects
         }
     }
 
@@ -87,4 +113,5 @@ class FirestoreController {
 
         }
     }
+
 }
