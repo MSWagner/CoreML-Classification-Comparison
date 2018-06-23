@@ -75,6 +75,9 @@ class FirestoreImagesViewModel {
                     let queriedImageURLSet = Set<String>(queriedImageURLs)
 
                     self.currentFirestoreURLs.value = Array(queriedImageURLSet)
+                    if self.currentPage.value == nil && !queriedImageURLSet.isEmpty {
+                        self.currentPage.value = 1
+                    }
                 } else {
                     self.currentFirestoreURLs.value = []
                 }
@@ -116,8 +119,9 @@ class FirestoreImagesViewModel {
 extension FirestoreImagesViewModel: ImageCollectionViewModel {
 
     func searchFor(_ query: String, page: Int? = nil) {
+        
+        currentPage.value = page
         _lastQuery.value = query
-        self.currentPage.value = page != nil ? page : 1
     }
 
     func onNextPage() {
