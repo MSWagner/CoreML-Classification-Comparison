@@ -22,6 +22,10 @@ If you select an image, you will be forwarded to the classification screen.
 
 <br><br>
 
+### Image classification
+| MLTypes | MLKit Results | Settings |
+|----------|-----------|-----------|
+|<img src="https://github.com/MSWagner/CoreML-Classification-Comparison/blob/master/Screenshots/MLModelTypes.PNG" width="150">|<img src="https://github.com/MSWagner/OnTheMapCoreML-Classification-Comparisonblob/master/Screenshots/DogClassification.PNG" width="150">|<img src="https://github.com/MSWagner/CoreML-Classification-Comparison/blob/master/Screenshots/Settings.PNG" width="150">|
 
 ## License
 This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details
