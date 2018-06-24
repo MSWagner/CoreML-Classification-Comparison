@@ -46,9 +46,12 @@ class CoreMLSectionHeaderCell: UITableViewCell {
 
         disposableBag += viewModel.areFilteredResults.producer
             .startWithValues { [weak self] areFilteredResults in
-                let startButtonTitle = areFilteredResults ? Strings.ProcessingViewController.startButtonTitle : Strings.ProcessingViewController.reStartButtonTitle
-                self?.startProcessingButton.setTitle(startButtonTitle, for: .normal)
-                self?.saveButtonWidthConstraint.constant = areFilteredResults ? 100 : 0
+                guard let `self` = self else { return }
+
+                let startButtonTitle = areFilteredResults ? Strings.ProcessingViewController.reStartButtonTitle : Strings.ProcessingViewController.startButtonTitle
+
+                self.startProcessingButton.setTitle(startButtonTitle, for: .normal)
+                self.saveButtonWidthConstraint.constant = areFilteredResults && self.viewModel.canSave ? 100 : 0
             }
     }
 

@@ -11,6 +11,7 @@ import ReactiveSwift
 import Vision
 import CoreML
 import PKHUD
+import AlamofireImage
 
 class ImageProcessingViewModel {
 
@@ -104,7 +105,7 @@ class ImageProcessingViewModel {
         if let resultForType = resultForType {
             return FirestoreController.shared.saveEntriesFor(url.absoluteString, withResult: resultForType)
         } else {
-            HUD.flash(.label("No classification results found."))
+            HUD.flash(.label(Strings.Classification.noResults))
             return nil
         }
     }

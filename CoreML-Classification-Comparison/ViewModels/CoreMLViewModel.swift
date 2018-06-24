@@ -42,6 +42,10 @@ class CoreMLViewModel {
         return modelType.rawValue
     }
 
+    var canSave: Bool {
+        return imageProcessingViewModel.photo.value.url != nil
+    }
+
     var isProcessing = MutableProperty<Bool>(false)
     var isSaving = MutableProperty<Bool>(false)
 
@@ -67,7 +71,7 @@ class CoreMLViewModel {
             guard let handler = self.getImageRequestHandlerWith(imageData) else {
                 DispatchQueue.main.async {
                     self.isProcessing.value = false
-                    HUD.flash(.labeledError(title: "Error", subtitle: "Image Preprocessing failed"), delay: 1.2)
+                    HUD.flash(.labeledError(title: Strings.Classification.preProcessingFailedTitle, subtitle: Strings.Classification.preProcessingFailedDescription), delay: 1.2)
                 }
                 return
             }
@@ -79,7 +83,7 @@ class CoreMLViewModel {
             } catch {
                 print("Failed to perform classification.\n\(error.localizedDescription)")
                 DispatchQueue.main.async {
-                    HUD.flash(.labeledError(title: "Error", subtitle: error.localizedDescription), delay: 1.2)
+                    HUD.flash(.labeledError(title:  Strings.Classification.preProcessingFailedTitle, subtitle: error.localizedDescription), delay: 1.2)
                     self.isProcessing.value = false
                 }
             }

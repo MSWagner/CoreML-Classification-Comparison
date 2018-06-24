@@ -15,6 +15,12 @@ public struct Strings {
         static let errorFirestoreSetData = Strings.localized("firestore_error_setData", value: "Error during firestore saving.")
     }
 
+    public struct Classification {
+        static let noResults = Strings.localized("classification_results_notfound", value: "Classification results not found.")
+        static let preProcessingFailedTitle = Strings.localized("classification_preprocessing_failed.title", value: "Processing Error")
+        static let preProcessingFailedDescription = Strings.localized("classification_preprocessing_failed.description", value: "Image Preprocessing failed.")
+    }
+
     public struct TabBarViewControllter {
         static let flickrTitle = Strings.localized("tabbarcontroller_title_flickr", value: "Flickr")
         static let savesTitle = Strings.localized("tabbarcontroller_title_saves", value: "Saves")
@@ -35,7 +41,7 @@ public struct Strings {
     public struct EnableSettingCell {
         static let modelSizeDescription = Strings.localized("settings_modelsize_description", value: "Preprocess image to model size")
         static let grayscaleDescription = Strings.localized("settings_grayscale_description", value: "Preprocess image to grayscale")
-        static let showResizedImagesDescription = Strings.localized("settings_resizedimages_description", value: "Show the scaled image")
+        static let showResizedImagesDescription = Strings.localized("settings_resizedimages_description", value: "Show the resized images")
     }
 
     public struct Alert {
