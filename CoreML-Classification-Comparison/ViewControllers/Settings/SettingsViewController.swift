@@ -61,7 +61,6 @@ class SettingsViewController: UIViewController {
                 var rows: [Row] = [
                     Row(self.viewModel, identifier: "PrecisionCell"),
                     Row(self.viewModel.withType(.modelImageSize), identifier: "EnableSettingCell"),
-                    Row(self.viewModel.withType(.grayScale), identifier: "EnableSettingCell")
                 ]
 
                 if isImageResizingOn {
