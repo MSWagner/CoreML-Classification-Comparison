@@ -1,5 +1,5 @@
 # CoreML-Classification-Comparison
-Compare the classification results from different standard CoreML models als Firebase MLKit. You can search for public images with tags on Flickr or you can use images from your library or the camera to compare the different models.
+Compare the classification results from different standard CoreML models and Firebase MLKit. You can search for public images with tags on Flickr or you can use images from your library or the camera to compare the different models.
 
 ## Prerequisites
 - Xcode: 9.4.1
