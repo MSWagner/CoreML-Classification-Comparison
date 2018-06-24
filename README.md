@@ -36,13 +36,9 @@ The saved images (flickr urls and classification results) are stored localy and 
 
 You can search for stored classification results and linked images from Flickr.
 
-<br><br><br><br>
-
 ### Library / Camera Support
 
 If you want to classify your own picture, you can click on the red camera button in the TabBar. It's also possible to preprocess an image from the camera.
-
-<br><br><br><br>
 
 ## License
 This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details
