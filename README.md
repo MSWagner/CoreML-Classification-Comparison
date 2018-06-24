@@ -7,7 +7,7 @@ Compare the classification results from different standard CoreML models and Fir
 - iOS: 11.4
 
 ## Setup 
-- run 'pod install' on your terminal
+- run 'pod install' in your terminal
 - add your 'GoogleService-Info.plist' from Firebase
 - add your Flickr APIKey and Secret in Config.Flickr
 - open 'CoreML-Classification-Comparison.xcworkspace' in Xcode
