@@ -23,7 +23,7 @@ If you select an image, you will be forwarded to the classification screen.
 <br><br>
 
 ### Image classification
-You can classify the selected image with different CoreML models or Firebase MLKit. In the settings you can set the precision for results, which should be shown on the screen and saved, if you press the save button. 
+You can classify the selected image with different CoreML models or Firebase MLKit. In the settings you can set the precision for results, which should be shown on the screen and saved, if you press the save button. You can also preprocess the images for the CoreML models to the recommended input image size and you have the option to see the resized images. 
 
 The saved images (flickr urls and classification results) are stored localy and remote in Firestore. You can search for the stored results on the right tabBarButton.
 
