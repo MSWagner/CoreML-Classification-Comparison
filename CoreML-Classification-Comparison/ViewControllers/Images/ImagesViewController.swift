@@ -252,7 +252,7 @@ extension ImagesViewController: UISearchResultsUpdating {
 
         if strippedString.count < 3 || strippedString == viewModel.lastQuery { return }
 
-        viewModel.searchFor(strippedString, page: nil)
+        viewModel.searchFor(strippedString.lowercased(), page: nil)
     }
 }
 
