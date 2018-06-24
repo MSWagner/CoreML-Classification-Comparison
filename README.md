@@ -12,5 +12,10 @@ Compare the classification results from different standard CoreML models als Fir
 
 In your 'Pods' project set the Swift language version for 'Diff' to 3.3 (Build Settings)
 
+## Features
+### Flickr Image Search
+<img align="right" width="200" src="https://github.com/MSWagner/CoreML-Classification-Comparison/blob/master/Screenshots/FlickrSearch.PNG">
+
+
 ## License
 This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details
