@@ -32,13 +32,15 @@ The saved images (flickr urls and classification results) are stored localy and 
 |<img src="https://github.com/MSWagner/CoreML-Classification-Comparison/blob/master/Screenshots/MLModelTypes.PNG" width="150">|<img src="https://github.com/MSWagner/CoreML-Classification-Comparison/blob/master/Screenshots/DogClassification.PNG" width="150">|<img src="https://github.com/MSWagner/CoreML-Classification-Comparison/blob/master/Screenshots/Settings.PNG" width="150">|
 
 ### Stored Result Search
-|<img align="right" src="https://github.com/MSWagner/CoreML-Classification-Comparison/blob/master/Screenshots/SearchSavedTags.PNG" width="150">|<img align="right" src="https://github.com/MSWagner/CoreML-Classification-Comparison/blob/master/Screenshots/ImagePickerAction.PNG" width="150">|
+<img align="right" src="https://github.com/MSWagner/CoreML-Classification-Comparison/blob/master/Screenshots/SearchSavedTags.PNG" width="150"><img align="right" src="https://github.com/MSWagner/CoreML-Classification-Comparison/blob/master/Screenshots/ImagePickerAction.PNG" width="150">
 
 You can search for stored classification results and linked images from Flickr.
 
 ### Library / Camera Support
 
 If you want to classify your own picture, you can click on the red camera button in the TabBar. It's also possible to preprocess an image from the camera.
+
+<br><br>
 
 ## License
 This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details
