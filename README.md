@@ -11,3 +11,6 @@ Compare the classification results from different standard CoreML models als Fir
 - open 'CoreML-Classification-Comparison.xcworkspace' in Xcode
 
 In your 'Pods' project set the Swift language version for 'Diff' to 3.3 (Build Settings)
+
+## License
+This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details
