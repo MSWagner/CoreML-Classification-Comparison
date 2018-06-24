@@ -63,7 +63,7 @@ class MainTabBarViewController: UITabBarController, PermissionProtocol {
 
     private func setupCameraButton() {
         var cameraFrame = cameraButton.frame
-        cameraFrame.origin.y = view.bounds.height - cameraFrame.height
+        cameraFrame.origin.y = view.bounds.height - cameraFrame.height - 10
         cameraFrame.origin.x = view.bounds.width/2 - cameraFrame.size.width/2
         cameraButton.frame = cameraFrame
 
