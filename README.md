@@ -20,5 +20,8 @@ You can search for images on Flickr with adding text into the searchbar. The min
 
 If you select an image, you will be forwarded to the classification screen.
 
+
+
+
 ## License
 This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details
