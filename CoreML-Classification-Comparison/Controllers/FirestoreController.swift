@@ -28,6 +28,8 @@ class FirestoreController {
 
     private init() {
 
+        db.settings.isPersistenceEnabled = true
+
         tagsRef.addSnapshotListener { [weak self] querySnapshot, error in
             print("Update")
 
