@@ -23,6 +23,10 @@ If you select an image, you will be forwarded to the classification screen.
 <br><br>
 
 ### Image classification
+You can classify the selected image with different CoreML models or Firebase MLKit. In the settings you can set the precision for results, which should be shown on the screen and saved, if you press the save button. 
+
+The saved images (flickr urls and classification results) are stored localy and remote in Firestore. You can search for the stored results on the right tabBarButton.
+
 | MLTypes | MLKit Results | Settings |
 |----------|-----------|-----------|
 |<img src="https://github.com/MSWagner/CoreML-Classification-Comparison/blob/master/Screenshots/MLModelTypes.PNG" width="150">|<img src="https://github.com/MSWagner/CoreML-Classification-Comparison/blob/master/Screenshots/DogClassification.PNG" width="150">|<img src="https://github.com/MSWagner/CoreML-Classification-Comparison/blob/master/Screenshots/Settings.PNG" width="150">|
