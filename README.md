@@ -14,6 +14,19 @@ Compare the classification results from different standard CoreML models and Fir
 
 In your 'Pods' project set the Swift language version for 'Diff' to 3.3 (Build Settings)
 
+##### Download CoreML models:
+- [SqueezeNet](https://firebasestorage.googleapis.com/v0/b/classification-comparison.appspot.com/o/SqueezeNet.mlmodel?alt=media&token=2b6a193e-0829-49c8-b809-5558c0464b40)
+- [Resnet50](https://firebasestorage.googleapis.com/v0/b/classification-comparison.appspot.com/o/Resnet50.mlmodel?alt=media&token=80cb6718-06af-49ce-bbcc-809c6352ed54)
+- [MobileNet](https://firebasestorage.googleapis.com/v0/b/classification-comparison.appspot.com/o/MobileNet.mlmodel?alt=media&token=97c6c5c4-ed36-48ce-a0f8-9c70ded3876d)
+- [Inceptionv3](https://firebasestorage.googleapis.com/v0/b/classification-comparison.appspot.com/o/Inceptionv3.mlmodel?alt=media&token=f570ce5b-98a9-4964-8770-65da02a76931)
+- [GoogLeNetPlaces](https://firebasestorage.googleapis.com/v0/b/classification-comparison.appspot.com/o/GoogLeNetPlaces.mlmodel?alt=media&token=6708b74c-07ae-4dba-b2ce-acc56dc543aa)
+
+Drop the models in CoreML-Classification-Comparison/Utilities/MLModels and build the project
+
+##### Add new CoreML models:
+Drop the new CoreML model in the project and add the model to the MLModelType enum.
+Then you can add your additional CoreMLViewModel with your new model type in the init of the ImageProcessingViewModel.
+
 ## Features
 ### Flickr Image Search
 <img align="right" width="100" src="https://github.com/MSWagner/CoreML-Classification-Comparison/blob/master/Screenshots/FlickrSearch.PNG">
