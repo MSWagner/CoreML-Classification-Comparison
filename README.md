@@ -27,6 +27,8 @@ Drop the models in CoreML-Classification-Comparison/Utilities/MLModels and build
 Drop the new CoreML model in the project and add the model to the MLModelType enum.
 Then you can add your additional CoreMLViewModel with your new model type in the init of the ImageProcessingViewModel.
 
+You can find additional models also here: https://github.com/likedan/Awesome-CoreML-Models
+
 ## Features
 ### Flickr Image Search
 <img align="right" width="100" src="https://github.com/MSWagner/CoreML-Classification-Comparison/blob/master/Screenshots/FlickrSearch.PNG">
