@@ -7,7 +7,7 @@ Compare the classification results from different standard CoreML models als Fir
 - iOS: 11.4
 
 ## Setup 
-run 'pod install' on your terminal
-open 'CoreML-Classification-Comparison.xcworkspace' in Xcode
+- run 'pod install' on your terminal
+- open 'CoreML-Classification-Comparison.xcworkspace' in Xcode
 
 In your 'Pods' project set the Swift language version for 'Diff' to 3.3 (Build Settings)
