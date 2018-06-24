@@ -19,5 +19,6 @@ target 'CoreML-Classification-Comparison' do
     pod 'ReachabilitySwift'
     pod 'GDPerformanceView-Swift', '~> 1.3.2'
     pod 'PKHUD', '~> 5.0'
+    pod 'DKImagePickerController', '~> 4.0.0-Beta2'
     
 end

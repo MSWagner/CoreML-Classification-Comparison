@@ -26,13 +26,13 @@ class EnableSettingCell: UITableViewCell {
         switch viewModel.settingType! {
         case .modelImageSize:
             valueProperty = viewModel.settings.shouldUseModelImageSize
-            titleLabel.text = "Preprocess image to model size"
+            titleLabel.text = Strings.EnableSettingCell.modelSizeDescription
         case .grayScale:
             valueProperty = viewModel.settings.shouldUseGrayscale
-            titleLabel.text = "Preprocess image to grayscale"
+            titleLabel.text = Strings.EnableSettingCell.grayscaleDescription
         case .showScaledImage:
             valueProperty = viewModel.settings.shouldShowResizedImage
-            titleLabel.text = "Show the scaled image"
+            titleLabel.text = Strings.EnableSettingCell.showResizedImagesDescription
         }
 
         valueSwitch.reactive.isOn <~ valueProperty.producer

@@ -8,13 +8,18 @@
 
 import UIKit
 import PKHUD
+import DKImagePickerController
 
 class MainTabBarViewController: UITabBarController, PermissionProtocol {
 
-    private var cameraButton = UIButton(frame: CGRect(x: 0,
-                                                      y: 0,
-                                                      width: 64,
-                                                      height: 64))
+    // MARK: - Properties
+
+    private var cameraButton = UIButton(frame: CGRect(x: 0, y: 0, width: 64, height: 64))
+
+    private let cameraPicker = UIImagePickerController()
+    private let libraryPicker = DKImagePickerController()
+
+    // MARK: - Life Cycle
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -25,26 +30,26 @@ class MainTabBarViewController: UITabBarController, PermissionProtocol {
         cameraButton.frame.origin.y -= view.safeAreaInsets.bottom
     }
 
+    // MARK: - Setup
 
     private func setupRootViewController() {
 
         // Flickr Controller
         let flickrNavigationController: UINavigationController = UIStoryboard(.images).instantiateViewController()
-        flickrNavigationController.tabBarItem = UITabBarItem(title: "Flickr", image: #imageLiteral(resourceName: "flickr"), selectedImage: nil)
+        flickrNavigationController.tabBarItem = UITabBarItem(title: Strings.TabBarViewControllter.flickrTitle, image: #imageLiteral(resourceName: "flickr"), selectedImage: nil)
 
         let flickrImageViewController: ImagesViewController = UIStoryboard(.images).instantiateViewController()
         flickrImageViewController.viewModel = FlickrViewModel()
         flickrNavigationController.viewControllers = [flickrImageViewController]
 
         // Photo Controller
-        let cameraViewController = UIViewController()
-        cameraViewController.title = "Camera"
-        let cameraNavigationController = UINavigationController(rootViewController: cameraViewController)
+        let viewController = UIViewController()
+        let cameraNavigationController = UINavigationController(rootViewController: viewController)
         cameraNavigationController.title = ""
 
         // Saves Controller
         let realmNavigationController: UINavigationController = UIStoryboard(.images).instantiateViewController()
-        realmNavigationController.tabBarItem = UITabBarItem(title: "Saves", image: #imageLiteral(resourceName: "file-folder"), selectedImage: nil)
+        realmNavigationController.tabBarItem = UITabBarItem(title: Strings.TabBarViewControllter.savesTitle, image: #imageLiteral(resourceName: "file-folder"), selectedImage: nil)
 
         let realmImageViewController: ImagesViewController = UIStoryboard(.images).instantiateViewController()
         realmImageViewController.viewModel = FirestoreImagesViewModel()
@@ -55,8 +60,6 @@ class MainTabBarViewController: UITabBarController, PermissionProtocol {
 
         setupCameraButton()
     }
-
-    // MARK: - Camera/Library
 
     private func setupCameraButton() {
         var cameraFrame = cameraButton.frame
@@ -73,6 +76,8 @@ class MainTabBarViewController: UITabBarController, PermissionProtocol {
 
         view.layoutIfNeeded()
     }
+
+    // MARK: - Camera/Library
 
     @objc private func onCamera(sender: UIButton) {
         presentAlertPicker()
@@ -112,16 +117,41 @@ class MainTabBarViewController: UITabBarController, PermissionProtocol {
             .startWithResult { [weak self] result in
                 guard let `self` = self else { return }
 
-                // TODO: Implement Camera/Library ViewController etc.
-
                 guard let isAccessGranted = result.value else { return }
 
                 DispatchQueue.main.async {
+
                     if isAccessGranted {
-                        self.selectedIndex = 1
-                        print("success")
+                        let pickerController = DKImagePickerController()
+                        pickerController.sourceType = sourceType.dkSourceType
+                        pickerController.singleSelect = true
+
+                        pickerController.didSelectAssets = { (assets: [DKAsset]) in
+
+                            for asset in assets {
+                                asset.fetchImageData(completeBlock: { imageData, _ in
+
+                                    if let imageData = imageData {
+                                        let photo = Photo(imageData: imageData)
+                                        let viewModel = ImageProcessingViewModel(photo: photo)
+
+                                        let processingViewController: ImageProcessingViewController = UIStoryboard(.processing).instantiateViewController()
+                                        processingViewController.viewModel = viewModel
+                                        processingViewController.title = Strings.ProcessingViewController.titlePickedImage
+
+                                        let currentNavVC = self.viewControllers![self.selectedIndex] as! UINavigationController
+                                        currentNavVC.pushViewController(processingViewController, animated: true)
+
+                                        return
+                                    }
+                                })
+                            }
+                        }
+
+                        self.present(pickerController, animated: true, completion: nil)
+
                     } else {
-                        HUD.flash(.labeledError(title: "Access permitted", subtitle: "Enable the permission in your settings to use this feature."), delay: 2)
+                        HUD.flash(.labeledError(title: Strings.Alert.accessPermittedTitle, subtitle: Strings.Alert.accessPermittedSubTitle), delay: 2)
                     }
                 }
             }

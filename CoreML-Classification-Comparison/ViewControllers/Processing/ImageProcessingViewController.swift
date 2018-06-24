@@ -31,7 +31,7 @@ class ImageProcessingViewController: UIViewController {
                     .configure { [weak self] (viewModel, cell, _) in
                         cell.configure(viewModel: viewModel)
                     }
-                    .height { self.imageCellHeight },
+                    .height { 200 },
                 CoreMLSectionHeaderCell.descriptor
                     .configure { [weak self] (viewModel, cell, _) in
                         cell.configure(viewModel: viewModel)
@@ -68,7 +68,10 @@ class ImageProcessingViewController: UIViewController {
             imageCellHeight = image.size.height < 1000 ? image.size.height : 1000
         }
 
-        navigationItem.title = viewModel.photo.value.searchQuery
+        if let  query = viewModel.photo.value.searchQuery {
+            navigationItem.title = query
+        }
+
         bindDataSource()
     }
 

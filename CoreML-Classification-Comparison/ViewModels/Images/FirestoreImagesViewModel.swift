@@ -55,7 +55,7 @@ class FirestoreImagesViewModel {
     }()
 
     var navigationTitle: String {
-        return Strings.ImagesViewController.realmTitle
+        return Strings.ImagesViewController.firestoreTitle
     }
 
     // MARK: - Init

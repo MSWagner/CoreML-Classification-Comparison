@@ -23,11 +23,12 @@ class ImageCollectionCell: UICollectionViewCell {
 
         if let image = photo.image {
             imageView.image =  UIImage(data: image)
-        } else {
-            let url = photo.url
+        } else if let url = photo.url {
             imageView.af_setImage(withURL: url) { response in
                 self.photo.image = response.data
             }
+        } else {
+            assertionFailure("No url or data in cell")
         }
     }
 }

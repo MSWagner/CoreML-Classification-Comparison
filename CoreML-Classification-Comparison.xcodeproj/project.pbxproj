@@ -47,6 +47,7 @@
 		D376243B20DC50E700BA260F /* ImageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D376243A20DC50E700BA260F /* ImageViewModel.swift */; };
 		D376243D20DC5C3D00BA260F /* UIImage+Data?.swift in Sources */ = {isa = PBXBuildFile; fileRef = D376243C20DC5C3D00BA260F /* UIImage+Data?.swift */; };
 		D376244320DE851700BA260F /* PermissionProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = D376244220DE851700BA260F /* PermissionProtocol.swift */; };
+		D376244520DFF11100BA260F /* UIImagePickerControllerSourceType+DKImagePicker .swift in Sources */ = {isa = PBXBuildFile; fileRef = D376244420DFF11100BA260F /* UIImagePickerControllerSourceType+DKImagePicker .swift */; };
 		D379CBC520D43CCC009B8EA4 /* SimpleButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = D379CBC420D43CCC009B8EA4 /* SimpleButton.swift */; };
 		D379CBC820D43EDC009B8EA4 /* SimpleButtonControlState.swift in Sources */ = {isa = PBXBuildFile; fileRef = D379CBC720D43EDC009B8EA4 /* SimpleButtonControlState.swift */; };
 		D379CBCA20D43F10009B8EA4 /* SimpleButtonStateChangeValue.swift in Sources */ = {isa = PBXBuildFile; fileRef = D379CBC920D43F10009B8EA4 /* SimpleButtonStateChangeValue.swift */; };
@@ -125,6 +126,7 @@
 		D376243A20DC50E700BA260F /* ImageViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageViewModel.swift; sourceTree = "<group>"; };
 		D376243C20DC5C3D00BA260F /* UIImage+Data?.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Data?.swift"; sourceTree = "<group>"; };
 		D376244220DE851700BA260F /* PermissionProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PermissionProtocol.swift; sourceTree = "<group>"; };
+		D376244420DFF11100BA260F /* UIImagePickerControllerSourceType+DKImagePicker .swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImagePickerControllerSourceType+DKImagePicker .swift"; sourceTree = "<group>"; };
 		D379CBC420D43CCC009B8EA4 /* SimpleButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimpleButton.swift; sourceTree = "<group>"; };
 		D379CBC720D43EDC009B8EA4 /* SimpleButtonControlState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimpleButtonControlState.swift; sourceTree = "<group>"; };
 		D379CBC920D43F10009B8EA4 /* SimpleButtonStateChangeValue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimpleButtonStateChangeValue.swift; sourceTree = "<group>"; };
@@ -303,6 +305,7 @@
 			children = (
 				D315148020DAAB54000C1206 /* UIImage+CVPixelBuffer.swift */,
 				D376243C20DC5C3D00BA260F /* UIImage+Data?.swift */,
+				D376244420DFF11100BA260F /* UIImagePickerControllerSourceType+DKImagePicker .swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -587,7 +590,12 @@
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
 				"${BUILT_PRODUCTS_DIR}/AlamofireImage/AlamofireImage.framework",
 				"${BUILT_PRODUCTS_DIR}/BoringSSL/openssl.framework",
+				"${BUILT_PRODUCTS_DIR}/CLImageEditor/CLImageEditor.framework",
+				"${BUILT_PRODUCTS_DIR}/DKCamera/DKCamera.framework",
+				"${BUILT_PRODUCTS_DIR}/DKImagePickerController/DKImagePickerController.framework",
+				"${BUILT_PRODUCTS_DIR}/DKPhotoGallery/DKPhotoGallery.framework",
 				"${BUILT_PRODUCTS_DIR}/Diff/Diff.framework",
+				"${BUILT_PRODUCTS_DIR}/FLAnimatedImage/FLAnimatedImage.framework",
 				"${BUILT_PRODUCTS_DIR}/GDPerformanceView-Swift/GDPerformanceView_Swift.framework",
 				"${BUILT_PRODUCTS_DIR}/GTMSessionFetcher/GTMSessionFetcher.framework",
 				"${BUILT_PRODUCTS_DIR}/GoogleAPIClientForREST/GoogleAPIClientForREST.framework",
@@ -600,6 +608,7 @@
 				"${BUILT_PRODUCTS_DIR}/ReactiveCocoa/ReactiveCocoa.framework",
 				"${BUILT_PRODUCTS_DIR}/ReactiveSwift/ReactiveSwift.framework",
 				"${BUILT_PRODUCTS_DIR}/Result/Result.framework",
+				"${BUILT_PRODUCTS_DIR}/SDWebImage/SDWebImage.framework",
 				"${BUILT_PRODUCTS_DIR}/gRPC/GRPCClient.framework",
 				"${BUILT_PRODUCTS_DIR}/gRPC-Core/grpc.framework",
 				"${BUILT_PRODUCTS_DIR}/gRPC-ProtoRPC/ProtoRPC.framework",
@@ -612,7 +621,12 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AlamofireImage.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/openssl.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/CLImageEditor.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/DKCamera.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/DKImagePickerController.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/DKPhotoGallery.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Diff.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FLAnimatedImage.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GDPerformanceView_Swift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMSessionFetcher.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleAPIClientForREST.framework",
@@ -625,6 +639,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ReactiveCocoa.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ReactiveSwift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Result.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SDWebImage.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GRPCClient.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/grpc.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ProtoRPC.framework",
@@ -685,6 +700,7 @@
 				D36F06D420CD823200F192D9 /* Environment.swift in Sources */,
 				D376243B20DC50E700BA260F /* ImageViewModel.swift in Sources */,
 				D36F06D820CD823200F192D9 /* API.swift in Sources */,
+				D376244520DFF11100BA260F /* UIImagePickerControllerSourceType+DKImagePicker .swift in Sources */,
 				D36F070A20CDE33B00F192D9 /* ImageTableViewCell.swift in Sources */,
 				D36F06FE20CD8F7000F192D9 /* ImagesViewController.swift in Sources */,
 				D379CBCA20D43F10009B8EA4 /* SimpleButtonStateChangeValue.swift in Sources */,

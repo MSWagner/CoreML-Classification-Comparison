@@ -70,7 +70,7 @@ class ImageProcessingViewModel {
                 self.filteredClassifications.value = newFilteredClassifications
             }
 
-        if let savedResults = FirestoreController.shared.classificationDict[photo.url.absoluteString] {
+        if let url = photo.url, let savedResults = FirestoreController.shared.classificationDict[url.absoluteString] {
 
             _classifications.value = savedResults
         }
@@ -94,9 +94,15 @@ class ImageProcessingViewModel {
         let resultForType = filteredClassifications.value
             .first(where: { $0.processingType == type })
 
+        // TODO: Upload of images to flickr, if they are selfmade
+
+        guard let url = photo.value.url else {
+            HUD.flash(.label("No image url found"))
+            return nil
+        }
+
         if let resultForType = resultForType {
-            let urlString = photo.value.url.absoluteString
-            return FirestoreController.shared.saveEntriesFor(urlString, withResult: resultForType)
+            return FirestoreController.shared.saveEntriesFor(url.absoluteString, withResult: resultForType)
         } else {
             HUD.flash(.label("No classification results found."))
             return nil

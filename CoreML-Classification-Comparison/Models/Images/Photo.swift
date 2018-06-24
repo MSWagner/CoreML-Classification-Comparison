@@ -10,8 +10,8 @@ import Foundation
 import UIKit
 
 struct Photo {
-    let url: URL
-    let searchQuery: String
+    let url: URL?
+    let searchQuery: String?
     var image: Data?
 
     init?(urlString: String, searchQuery: String) {
@@ -23,5 +23,11 @@ struct Photo {
 
         self.searchQuery = searchQuery
         image = nil
+    }
+
+    init(imageData: Data) {
+        image = imageData
+        url = nil
+        searchQuery = nil
     }
 }

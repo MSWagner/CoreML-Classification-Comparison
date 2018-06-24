@@ -15,10 +15,27 @@ public struct Strings {
         static let errorFirestoreSetData = Strings.localized("firestore_error_setData", value: "Error during firestore saving.")
     }
 
+    public struct TabBarViewControllter {
+        static let flickrTitle = Strings.localized("tabbarcontroller_title_flickr", value: "Flickr")
+        static let savesTitle = Strings.localized("tabbarcontroller_title_saves", value: "Saves")
+    }
+
     public struct ImagesViewController {
-        static let realmTitle = Strings.localized("images_realm_title", value: "Database Image Search")
+        static let firestoreTitle = Strings.localized("images_realm_title", value: "Database Image Search")
         static let flickrTitle = Strings.localized("images_flickr_title", value: "Flirckr Image Search")
         static let emptyViewDescription = Strings.localized("emtpy_view_description", value: "Enter tags into the search bar to find images. At the moment there are no pictures found.")
+    }
+
+    public struct ProcessingViewController {
+        static let titlePickedImage = Strings.localized("processing_title_pickedimage", value: "Picked Image")
+        static let startButtonTitle = Strings.localized("processing_title_startbutton", value: "Start")
+        static let reStartButtonTitle = Strings.localized("processing_title_restartbutton", value: "Restart")
+    }
+
+    public struct EnableSettingCell {
+        static let modelSizeDescription = Strings.localized("settings_modelsize_description", value: "Preprocess image to model size")
+        static let grayscaleDescription = Strings.localized("settings_grayscale_description", value: "Preprocess image to grayscale")
+        static let showResizedImagesDescription = Strings.localized("settings_resizedimages_description", value: "Show the scaled image")
     }
 
     public struct Alert {
@@ -32,6 +49,8 @@ public struct Strings {
         static let library = Strings.localized("Shared.titles.library", value: "Library")
         static let camera = Strings.localized("Shared.titles.camera", value: "Camera")
         static let assume = Strings.localized("Shared.buttons.assume", value: "Assume")
+        static let accessPermittedTitle = Strings.localized("Shared.access.permitted.title", value: "Access permitted")
+        static let accessPermittedSubTitle = Strings.localized("Shared.access.permitted.subtitle", value: "Enable the permission in your settings to use this feature.")
     }
 
     // settings this closure allows you to use a custom localization provider, such as OneSky over-the-air
