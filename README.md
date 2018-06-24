@@ -14,8 +14,11 @@ In your 'Pods' project set the Swift language version for 'Diff' to 3.3 (Build S
 
 ## Features
 ### Flickr Image Search
-<img align="right" width="200" src="https://github.com/MSWagner/CoreML-Classification-Comparison/blob/master/Screenshots/FlickrSearch.PNG">
+<img align="right" width="100" src="https://github.com/MSWagner/CoreML-Classification-Comparison/blob/master/Screenshots/FlickrSearch.PNG">
 
+You can search for images on Flickr with adding text into the searchbar. The minimum character count is 3. From then on the images will updated live and you have the possibilty to go through the differnt pages for a tag.
+
+If you select an image, you will be forwarded to the classification screen.
 
 ## License
 This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details
