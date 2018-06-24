@@ -12,7 +12,7 @@ import Vision
 import ReactiveSwift
 import PKHUD
 
-class CoreMLViewModel {
+class CoreMLViewModel: MLViewModel {
 
     // MARK: - Private Properties
 
@@ -20,6 +20,9 @@ class CoreMLViewModel {
     private(set) var modelType: MLModelType
 
     private var classificationRequest: VNCoreMLRequest!
+
+    private(set) var isProcessing = MutableProperty<Bool>(false)
+    private(set) var isSaving = MutableProperty<Bool>(false)
 
     private var shouldNotPreProcess: Bool {
         let settings = imageProcessingViewModel.settings
@@ -45,9 +48,6 @@ class CoreMLViewModel {
     var canSave: Bool {
         return imageProcessingViewModel.photo.value.url != nil
     }
-
-    var isProcessing = MutableProperty<Bool>(false)
-    var isSaving = MutableProperty<Bool>(false)
 
     lazy var areFilteredResults: Property<Bool> = {
         let initial = imageProcessingViewModel.filteredClassifications.value
@@ -117,7 +117,7 @@ class CoreMLViewModel {
 
 extension CoreMLViewModel {
     private func createMLRequestFor(_ mlModelType: MLModelType) -> VNCoreMLRequest {
-        let model = try! VNCoreMLModel(for: mlModelType.model)
+        let model = try! VNCoreMLModel(for: mlModelType.model!)
 
         let request = VNCoreMLRequest(model: model, completionHandler: { [weak self] request, error in
             self?.processClassifications(for: request, error: error, type: mlModelType)
@@ -142,7 +142,7 @@ extension CoreMLViewModel {
             self.isProcessing.value = false
 
             let imageClasses = classifications
-                .map { ImageClass(identifier: $0.identifier,
+                .map { ImageClass(identifier: $0.identifier.lowercased(),
                                   confidence: Double($0.confidence))
             }
 
@@ -166,13 +166,13 @@ extension CoreMLViewModel {
 
         if shouldUseModelImageSize && !shouldUseGrayscale {
 
-            return UIImage(data: imageData)?.pixelBuffer(width: modelType.imageWidth,
-                                                         height: modelType.imageHeight)
+            return UIImage(data: imageData)?.pixelBuffer(width: modelType.imageWidth!,
+                                                         height: modelType.imageHeight!)
 
         } else if shouldUseModelImageSize && shouldUseGrayscale {
 
-            return UIImage(data: imageData)?.pixelBufferGray(width: modelType.imageWidth,
-                                                             height: modelType.imageHeight)
+            return UIImage(data: imageData)?.pixelBufferGray(width: modelType.imageWidth!,
+                                                             height: modelType.imageHeight!)
 
         } else if !shouldUseModelImageSize && shouldUseGrayscale {
 

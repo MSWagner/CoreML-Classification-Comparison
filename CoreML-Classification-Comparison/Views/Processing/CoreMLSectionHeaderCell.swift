@@ -22,36 +22,36 @@ class CoreMLSectionHeaderCell: UITableViewCell {
 
     // MARK: - Properties
 
-    private var viewModel: CoreMLViewModel!
+    private var viewModel: MLViewModel!
 
     var disposableBag = CompositeDisposable()
 
     // MARK: - Configure
 
-    func configure(viewModel: CoreMLViewModel) {
+    func configure(viewModel: MLViewModel) {
         self.viewModel = viewModel
         modelNameLabel.text = viewModel.modelName
         disposableBag.dispose()
         disposableBag = CompositeDisposable()
-
-        disposableBag += viewModel.isProcessing.producer
-            .startWithValues { [weak self] isProcessing in
-                self?.startProcessingButton.isLoading = isProcessing
-            }
 
         disposableBag += viewModel.isSaving.producer
             .startWithValues { isSaving in
                 self.saveButton.isLoading = isSaving
             }
 
-        disposableBag += viewModel.areFilteredResults.producer
-            .startWithValues { [weak self] areFilteredResults in
+        disposableBag += SignalProducer.combineLatest(viewModel.areFilteredResults.producer,
+                                                      viewModel.isProcessing.producer)
+            .startWithValues { [weak self] areFilteredResults, isProcessing in
                 guard let `self` = self else { return }
 
-                let startButtonTitle = areFilteredResults ? Strings.ProcessingViewController.reStartButtonTitle : Strings.ProcessingViewController.startButtonTitle
+                self.startProcessingButton.isLoading = isProcessing
 
-                self.startProcessingButton.setTitle(startButtonTitle, for: .normal)
-                self.saveButtonWidthConstraint.constant = areFilteredResults && self.viewModel.canSave ? 100 : 0
+                if !isProcessing {
+                    let startButtonTitle = areFilteredResults ? Strings.ProcessingViewController.reStartButtonTitle : Strings.ProcessingViewController.startButtonTitle
+
+                    self.startProcessingButton.setTitle(startButtonTitle, for: .normal)
+                    self.saveButtonWidthConstraint.constant = areFilteredResults && self.viewModel.canSave ? 100 : 0
+                }
             }
     }
 
@@ -69,7 +69,7 @@ class CoreMLSectionHeaderCell: UITableViewCell {
 // MARK: - DataSource Extension
 
 extension CoreMLSectionHeaderCell {
-    static var descriptor: CellDescriptor<CoreMLViewModel, CoreMLSectionHeaderCell> {
+    static var descriptor: CellDescriptor<MLViewModel, CoreMLSectionHeaderCell> {
         return CellDescriptor("MLSectionCell")
             .configure { (data, cell, _) in
                 cell.configure(viewModel: data)

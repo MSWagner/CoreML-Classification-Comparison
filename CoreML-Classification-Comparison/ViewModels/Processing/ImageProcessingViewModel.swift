@@ -17,8 +17,8 @@ class ImageProcessingViewModel {
 
     // MARK: - Properties
 
-    private var _coreMLViewModels = MutableProperty<[CoreMLViewModel]>([])
-    lazy var coreMLViewModels: Property<[CoreMLViewModel]> = {
+    private var _coreMLViewModels = MutableProperty<[MLViewModel]>([])
+    lazy var coreMLViewModels: Property<[MLViewModel]> = {
         return Property(self._coreMLViewModels)
     }()
 
@@ -42,7 +42,8 @@ class ImageProcessingViewModel {
         self._photo = MutableProperty<Photo>(photo)
         settings = FilterSettings()
 
-        let coreMLViewModels = [
+        let coreMLViewModels: [MLViewModel] = [
+            MLKitViewModel(imageProcessingViewModel: self, type: .firebaseMLKit),
             CoreMLViewModel(imageProcessingViewModel: self, type: .mobileNet),
             CoreMLViewModel(imageProcessingViewModel: self, type: .vgg16),
             CoreMLViewModel(imageProcessingViewModel: self, type: .resnet50),
@@ -95,10 +96,8 @@ class ImageProcessingViewModel {
         let resultForType = filteredClassifications.value
             .first(where: { $0.processingType == type })
 
-        // TODO: Upload of images to flickr, if they are selfmade
-
         guard let url = photo.value.url else {
-            HUD.flash(.label("No image url found"))
+            HUD.flash(.label("Saving for self picked images is not supported"), delay: 2)
             return nil
         }
 

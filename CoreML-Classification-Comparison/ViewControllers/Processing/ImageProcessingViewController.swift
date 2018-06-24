@@ -82,20 +82,20 @@ class ImageProcessingViewController: UIViewController {
                                      viewModel.coreMLViewModels.producer,
                                      viewModel.filteredClassifications.producer,
                                      viewModel.shouldShowResizedImage.producer)
-            .startWithValues { [weak self] photo, coreMlViewModels, classificationResults, shouldShowResizedImage in
+            .startWithValues { [weak self] photo, mlViewModels, classificationResults, shouldShowResizedImage in
                 guard let `self` = self else { return }
 
                 let imageSection = Section(rows: [Row(self.viewModel.getImageViewModel(), identifier: "ImageCell")])
                     .with(identifier: "ImageCellFooter")
 
-                let rows = coreMlViewModels
-                    .map { coreMLViewModel -> [Row] in
+                let rows = mlViewModels
+                    .map { mlViewModel -> [Row] in
                         var typeRows = [
-                            Row(coreMLViewModel, identifier: "MLSectionCell")
+                            Row(mlViewModel, identifier: "MLSectionCell")
                         ]
 
                         let classifications = classificationResults.lazy
-                            .filter { $0.processingType == coreMLViewModel.modelType }
+                            .filter { $0.processingType == mlViewModel.modelType }
                             .map { $0.classifications
                                 .map {
                                     Row($0, identifier: "MLClassifiResultCell")
@@ -103,7 +103,7 @@ class ImageProcessingViewController: UIViewController {
                             }
                             .flatMap { $0 }
 
-                        if shouldShowResizedImage && !classifications.isEmpty  {
+                        if shouldShowResizedImage && !classifications.isEmpty, let coreMLViewModel = mlViewModel as? CoreMLViewModel  {
                             typeRows.append(
                                 Row(self.viewModel.getImageViewModel(coreMLViewModel: coreMLViewModel),identifier: "ImageCell")
                             )

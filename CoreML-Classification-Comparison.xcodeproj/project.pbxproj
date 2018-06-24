@@ -48,6 +48,8 @@
 		D376243D20DC5C3D00BA260F /* UIImage+Data?.swift in Sources */ = {isa = PBXBuildFile; fileRef = D376243C20DC5C3D00BA260F /* UIImage+Data?.swift */; };
 		D376244320DE851700BA260F /* PermissionProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = D376244220DE851700BA260F /* PermissionProtocol.swift */; };
 		D376244520DFF11100BA260F /* UIImagePickerControllerSourceType+DKImagePicker .swift in Sources */ = {isa = PBXBuildFile; fileRef = D376244420DFF11100BA260F /* UIImagePickerControllerSourceType+DKImagePicker .swift */; };
+		D376244820E02B2A00BA260F /* MLKitViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D376244720E02B2A00BA260F /* MLKitViewModel.swift */; };
+		D376244A20E02C8300BA260F /* MLViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D376244920E02C8300BA260F /* MLViewModel.swift */; };
 		D379CBC520D43CCC009B8EA4 /* SimpleButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = D379CBC420D43CCC009B8EA4 /* SimpleButton.swift */; };
 		D379CBC820D43EDC009B8EA4 /* SimpleButtonControlState.swift in Sources */ = {isa = PBXBuildFile; fileRef = D379CBC720D43EDC009B8EA4 /* SimpleButtonControlState.swift */; };
 		D379CBCA20D43F10009B8EA4 /* SimpleButtonStateChangeValue.swift in Sources */ = {isa = PBXBuildFile; fileRef = D379CBC920D43F10009B8EA4 /* SimpleButtonStateChangeValue.swift */; };
@@ -127,6 +129,8 @@
 		D376243C20DC5C3D00BA260F /* UIImage+Data?.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Data?.swift"; sourceTree = "<group>"; };
 		D376244220DE851700BA260F /* PermissionProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PermissionProtocol.swift; sourceTree = "<group>"; };
 		D376244420DFF11100BA260F /* UIImagePickerControllerSourceType+DKImagePicker .swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImagePickerControllerSourceType+DKImagePicker .swift"; sourceTree = "<group>"; };
+		D376244720E02B2A00BA260F /* MLKitViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MLKitViewModel.swift; sourceTree = "<group>"; };
+		D376244920E02C8300BA260F /* MLViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MLViewModel.swift; sourceTree = "<group>"; };
 		D379CBC420D43CCC009B8EA4 /* SimpleButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimpleButton.swift; sourceTree = "<group>"; };
 		D379CBC720D43EDC009B8EA4 /* SimpleButtonControlState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimpleButtonControlState.swift; sourceTree = "<group>"; };
 		D379CBC920D43F10009B8EA4 /* SimpleButtonStateChangeValue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimpleButtonStateChangeValue.swift; sourceTree = "<group>"; };
@@ -326,9 +330,8 @@
 		D36F06C420CD823100F192D9 /* ViewModels */ = {
 			isa = PBXGroup;
 			children = (
+				D376244620E02B0F00BA260F /* Processing */,
 				D379CBD520D47516009B8EA4 /* Images */,
-				D36F070B20CDE3B000F192D9 /* ImageProcessingViewModel.swift */,
-				D3ECAFD220D3114E00B43FED /* CoreMLViewModel.swift */,
 				D3ECAFF320D436BF00B43FED /* FilterSettingsViewModel.swift */,
 			);
 			path = ViewModels;
@@ -394,6 +397,17 @@
 				D36F06FD20CD8F7000F192D9 /* ImagesViewController.swift */,
 			);
 			path = Images;
+			sourceTree = "<group>";
+		};
+		D376244620E02B0F00BA260F /* Processing */ = {
+			isa = PBXGroup;
+			children = (
+				D36F070B20CDE3B000F192D9 /* ImageProcessingViewModel.swift */,
+				D3ECAFD220D3114E00B43FED /* CoreMLViewModel.swift */,
+				D376244720E02B2A00BA260F /* MLKitViewModel.swift */,
+				D376244920E02C8300BA260F /* MLViewModel.swift */,
+			);
+			path = Processing;
 			sourceTree = "<group>";
 		};
 		D379CBC620D43EC9009B8EA4 /* SimpleButton */ = {
@@ -664,6 +678,7 @@
 				D36F06D720CD823200F192D9 /* APIClient.swift in Sources */,
 				D36F06E520CD823200F192D9 /* Formatters.swift in Sources */,
 				D379CBD420D470C6009B8EA4 /* QueryStatus.swift in Sources */,
+				D376244A20E02C8300BA260F /* MLViewModel.swift in Sources */,
 				D36F070E20CDE48C00F192D9 /* ImageProcessingViewController.swift in Sources */,
 				D3ECAFDC20D3A21700B43FED /* SqueezeNet.mlmodel in Sources */,
 				D36F06E420CD823200F192D9 /* Decoders.swift in Sources */,
@@ -703,6 +718,7 @@
 				D376244520DFF11100BA260F /* UIImagePickerControllerSourceType+DKImagePicker .swift in Sources */,
 				D36F070A20CDE33B00F192D9 /* ImageTableViewCell.swift in Sources */,
 				D36F06FE20CD8F7000F192D9 /* ImagesViewController.swift in Sources */,
+				D376244820E02B2A00BA260F /* MLKitViewModel.swift in Sources */,
 				D379CBCA20D43F10009B8EA4 /* SimpleButtonStateChangeValue.swift in Sources */,
 				D379CBC820D43EDC009B8EA4 /* SimpleButtonControlState.swift in Sources */,
 				D3ECAFE920D4317200B43FED /* SettingsViewController.swift in Sources */,

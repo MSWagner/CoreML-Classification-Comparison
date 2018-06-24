@@ -16,8 +16,9 @@ enum MLModelType: String {
     case resnet50 = "Resnet50"
     case inceptionv3 = "Inceptionv3"
     case googleLeNetPlaces = "GoogLeNetPlaces"
+    case firebaseMLKit = "FirebaseMLKit"
 
-    var model: MLModel {
+    var model: MLModel? {
         switch self {
         case .mobileNet: return MobileNet().model
         case .vgg16: return VGG16().model
@@ -25,10 +26,11 @@ enum MLModelType: String {
         case .resnet50: return Resnet50().model
         case .inceptionv3: return Inceptionv3().model
         case .googleLeNetPlaces: return GoogLeNetPlaces().model
+        case .firebaseMLKit: return nil
         }
     }
 
-    var imageWidth: Int {
+    var imageWidth: Int? {
         switch self {
         case .mobileNet: return 224
         case .vgg16: return 224
@@ -36,10 +38,11 @@ enum MLModelType: String {
         case .resnet50: return 224
         case .inceptionv3: return 299
         case .googleLeNetPlaces: return 224
+        case .firebaseMLKit: return nil
         }
     }
 
-    var imageHeight: Int {
+    var imageHeight: Int? {
         switch self {
         case .mobileNet: return 224
         case .vgg16: return 224
@@ -47,6 +50,7 @@ enum MLModelType: String {
         case .resnet50: return 224
         case .inceptionv3: return 299
         case .googleLeNetPlaces: return 224
+        case .firebaseMLKit: return nil
         }
     }
 }
