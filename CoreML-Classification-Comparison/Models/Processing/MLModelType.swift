@@ -11,7 +11,6 @@ import CoreML
 
 enum MLModelType: String {
     case mobileNet = "MobileNet"
-    case vgg16 = "VGG16"
     case squeezeNet = "SqueezeNet"
     case resnet50 = "Resnet50"
     case inceptionv3 = "Inceptionv3"
@@ -21,7 +20,6 @@ enum MLModelType: String {
     var model: MLModel? {
         switch self {
         case .mobileNet: return MobileNet().model
-        case .vgg16: return VGG16().model
         case .squeezeNet: return SqueezeNet().model
         case .resnet50: return Resnet50().model
         case .inceptionv3: return Inceptionv3().model
@@ -33,7 +31,6 @@ enum MLModelType: String {
     var imageWidth: Int? {
         switch self {
         case .mobileNet: return 224
-        case .vgg16: return 224
         case .squeezeNet: return 227
         case .resnet50: return 224
         case .inceptionv3: return 299
@@ -45,7 +42,6 @@ enum MLModelType: String {
     var imageHeight: Int? {
         switch self {
         case .mobileNet: return 224
-        case .vgg16: return 224
         case .squeezeNet: return 227
         case .resnet50: return 224
         case .inceptionv3: return 299

@@ -45,7 +45,6 @@ class ImageProcessingViewModel {
         let coreMLViewModels: [MLViewModel] = [
             MLKitViewModel(imageProcessingViewModel: self, type: .firebaseMLKit),
             CoreMLViewModel(imageProcessingViewModel: self, type: .mobileNet),
-            CoreMLViewModel(imageProcessingViewModel: self, type: .vgg16),
             CoreMLViewModel(imageProcessingViewModel: self, type: .resnet50),
             CoreMLViewModel(imageProcessingViewModel: self, type: .inceptionv3),
             CoreMLViewModel(imageProcessingViewModel: self, type: .squeezeNet),
