@@ -69,7 +69,6 @@
 		D3ECAFD520D3122800B43FED /* MLModelType.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3ECAFD420D3122800B43FED /* MLModelType.swift */; };
 		D3ECAFDC20D3A21700B43FED /* SqueezeNet.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = D3ECAFD620D3A1F700B43FED /* SqueezeNet.mlmodel */; };
 		D3ECAFDD20D3A21700B43FED /* Resnet50.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = D3ECAFD720D3A1FB00B43FED /* Resnet50.mlmodel */; };
-		D3ECAFDE20D3A21700B43FED /* VGG16.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = D3ECAFD820D3A21100B43FED /* VGG16.mlmodel */; };
 		D3ECAFDF20D3A21700B43FED /* GoogLeNetPlaces.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = D3ECAFD920D3A21200B43FED /* GoogLeNetPlaces.mlmodel */; };
 		D3ECAFE020D3A21700B43FED /* Inceptionv3.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = D3ECAFDA20D3A21600B43FED /* Inceptionv3.mlmodel */; };
 		D3ECAFE120D3A21700B43FED /* MobileNet.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = D3ECAFDB20D3A21700B43FED /* MobileNet.mlmodel */; };
@@ -150,7 +149,6 @@
 		D3ECAFD420D3122800B43FED /* MLModelType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MLModelType.swift; sourceTree = "<group>"; };
 		D3ECAFD620D3A1F700B43FED /* SqueezeNet.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = SqueezeNet.mlmodel; sourceTree = "<group>"; };
 		D3ECAFD720D3A1FB00B43FED /* Resnet50.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = Resnet50.mlmodel; sourceTree = "<group>"; };
-		D3ECAFD820D3A21100B43FED /* VGG16.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = VGG16.mlmodel; sourceTree = "<group>"; };
 		D3ECAFD920D3A21200B43FED /* GoogLeNetPlaces.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = GoogLeNetPlaces.mlmodel; sourceTree = "<group>"; };
 		D3ECAFDA20D3A21600B43FED /* Inceptionv3.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = Inceptionv3.mlmodel; sourceTree = "<group>"; };
 		D3ECAFDB20D3A21700B43FED /* MobileNet.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = MobileNet.mlmodel; sourceTree = "<group>"; };
@@ -490,7 +488,6 @@
 				D3ECAFDB20D3A21700B43FED /* MobileNet.mlmodel */,
 				D3ECAFD720D3A1FB00B43FED /* Resnet50.mlmodel */,
 				D3ECAFD620D3A1F700B43FED /* SqueezeNet.mlmodel */,
-				D3ECAFD820D3A21100B43FED /* VGG16.mlmodel */,
 			);
 			path = MLModels;
 			sourceTree = "<group>";
@@ -699,7 +696,6 @@
 				D36F070220CDA39E00F192D9 /* FlickrPhotoSearchResult.swift in Sources */,
 				D315145E20D6F353000C1206 /* ImageClass.swift in Sources */,
 				D36F06D920CD823200F192D9 /* MoyaLogger.swift in Sources */,
-				D3ECAFDE20D3A21700B43FED /* VGG16.mlmodel in Sources */,
 				D36F06FB20CD8E0100F192D9 /* Photo.swift in Sources */,
 				D379CBD920D47622009B8EA4 /* Strings.swift in Sources */,
 				D36F06DD20CD823200F192D9 /* Storyboard.swift in Sources */,
