@@ -11,7 +11,7 @@ target 'CoreML-Classification-Comparison' do
     pod 'ReactiveCocoa', '~> 7.1'
     pod 'AlamofireImage', '~> 3.3'
     pod 'Moya/ReactiveSwift', '~> 11.0'
-    pod 'MBDataSource'
+    pod 'MBDataSource', :git => 'https://github.com/MSWagner/DataSource.git', :branch => 'update-diff'
     pod 'Firebase/Core'
     pod 'Firebase/Firestore'
     pod 'Firebase/MLVision'
