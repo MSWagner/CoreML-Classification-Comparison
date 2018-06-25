@@ -12,8 +12,6 @@ Compare the classification results from different standard CoreML models and Fir
 - add your Flickr APIKey and Secret in Config.Flickr
 - open 'CoreML-Classification-Comparison.xcworkspace' in Xcode
 
-In your 'Pods' project set the Swift language version for 'Diff' to 3.3 (Build Settings)
-
 ##### Download CoreML models:
 - [SqueezeNet](https://firebasestorage.googleapis.com/v0/b/classification-comparison.appspot.com/o/SqueezeNet.mlmodel?alt=media&token=2b6a193e-0829-49c8-b809-5558c0464b40)
 - [Resnet50](https://firebasestorage.googleapis.com/v0/b/classification-comparison.appspot.com/o/Resnet50.mlmodel?alt=media&token=80cb6718-06af-49ce-bbcc-809c6352ed54)
